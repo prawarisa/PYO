@@ -1,0 +1,57 @@
+/* จัดตำแหน่งปุ่มด้านบน */
+.button-group {
+  display: flex;
+  flex-direction: column; /* จัดตำแหน่งปุ่มให้อยู่คนละแถว */
+  align-items: flex-start; /* ปุ่มด้านบนชิดซ้าย */
+  gap: 20px;
+  padding: 20px;
+}
+
+.left-buttons {
+  display: flex; /* จัดตำแหน่งปุ่ม 3 ปุ่มให้อยู่ในแนวเดียวกัน */
+  gap: 20px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+.custom-button {
+  background-color: #6c757d; /* สีเทา */
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 25px;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.custom-button:hover {
+  background-color: #5a6268; /* สีเทาเข้มขึ้น */
+  transform: scale(1.05); /* เพิ่มขนาดเมื่อ hover */
+}
+
+/* ปุ่ม Back อยู่ข้างล่าง */
+.bottom-button {
+  margin-top: 20px; /* ระยะห่างจากปุ่มด้านบน */
+}
+
+.btn-back {
+  background-color: #ffc107; /* สีเหลือง */
+  color: white;
+  border: none;
+  border-radius: 30px; /* ปรับให้มุมโค้งกลม */
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* ระยะห่างระหว่างไอคอนและข้อความ */
+}
+
+.btn-back:hover {
+  background-color: #e0a800;
+  transform: scale(1.05); /* เพิ่มขนาดเมื่อ hover */
+}

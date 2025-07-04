@@ -1,0 +1,84 @@
+<p-card>
+  <div class="container">
+    <!-- ส่วนหัวสำหรับ Division, Factory, Process -->
+    <div class="form-section">
+      <label for="division">Division:</label>
+      <input
+        type="text"
+        id="division"
+        class="form-input"
+        [(ngModel)]="division"
+        placeholder="Enter Division"
+      />
+
+      <label for="factory">Factory:</label>
+      <input
+        type="text"
+        id="factory"
+        class="form-input"
+        [(ngModel)]="factory"
+        placeholder="Enter Factory"
+      />
+
+      <label for="process">Process:</label>
+      <input
+        type="text"
+        id="process"
+        class="form-input"
+        [(ngModel)]="process"
+        placeholder="Enter Process"
+      />
+    </div>
+
+    <!-- ตารางแสดงข้อมูล -->
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Item No</th>
+          <th>Part No</th>
+          <th>Process</th>
+          <th>MC Type</th>
+          <th>Spec</th>
+          <th>MC No</th>
+          <th>Qty</th>
+          <th>Case</th>
+          <th>REV</th>
+          <th>DEL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.itemNo }}</td>
+          <td>{{ item.partNo }}</td>
+          <td>{{ item.process }}</td>
+          <td>{{ item.mcType }}</td>
+          <td>{{ item.spec }}</td>
+          <td>{{ item.mcNo }}</td>
+          <td>{{ item.qty }}</td>
+          <td>{{ item.case }}</td>
+          <td>{{ item.rev }}</td>
+          <td>
+            <button (click)="deleteItem(i)" class="delete-button">
+              <i class="pi pi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+   <!-- เส้นแบ่ง -->
+
+  <hr style="height: 2px; border-width: 0; color: blue; background-color: blue" />
+  <!-- ปุ่ม -->
+  <div class="button-container">
+    <button
+      class="custom-button" (click)="showCreateDocPopup()"
+      style="background-color: #2196f3; color: white; padding: 10px 20px; border-radius: 25px; font-size: 1.2rem; font-weight: bold;"
+    >
+      Create Doc no.
+    </button>
+  </div>
+
+</p-card>

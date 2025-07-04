@@ -1,0 +1,99 @@
+<p-card>
+  <div class="summary-container">
+    <!-- ฟอร์มข้อมูล -->
+    <div class="form-header">
+      <label>Doc_no:</label>
+      <input type="text" [value]="docNo" disabled />
+
+      <label>Division:</label>
+      <input type="text" [value]="division" disabled />
+
+      <label>Factory:</label>
+      <input type="text" [value]="factory" disabled />
+
+      <label>Process:</label>
+      <input type="text" [value]="process" disabled />
+
+      <label>Date of Req:</label>
+      <input type="text" [value]="dateOfReq" disabled />
+
+      <button class="export-btn" (click)="exportToExcel()">Export Excel</button>
+    </div>
+
+    <!-- ตารางข้อมูลหลัก -->
+    <div class="table-main">
+      <table>
+        <thead>
+          <tr>
+            <th>Doc no.</th>
+            <th>Division</th>
+            <th>Factory</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Item no.</th>
+            <th>Part no.</th>
+            <th>Revision</th>
+            <th>Process</th>
+            <th>MC type</th>
+            <th>Spec</th>
+            <th>MC no.</th>
+            <th>Qty</th>
+            <th>Case</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of mainData">
+            <td>{{ item.docNo }}</td>
+            <td>{{ item.division }}</td>
+            <td>{{ item.factory }}</td>
+            <td>{{ item.date }}</td>
+            <td>{{ item.time }}</td>
+            <td>{{ item.itemNo }}</td>
+            <td>{{ item.partNo }}</td>
+            <td>{{ item.revision }}</td>
+            <td>{{ item.process }}</td>
+            <td>{{ item.mcType }}</td>
+            <td>{{ item.spec }}</td>
+            <td>{{ item.mcNo }}</td>
+            <td>{{ item.qty }}</td>
+            <td>{{ item.case }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ตารางข้อมูลย่อย -->
+    <!-- <div class="table-sub">
+      <table>
+        <thead>
+          <tr>
+            <th>Part no.</th>
+            <th>Revision</th>
+            <th>Process</th>
+            <th>MC type</th>
+            <th>Spec</th>
+            <th>MC no.</th>
+            <th>Qty</th>
+            <th>Case</th>
+            <th>Status</th>
+            <th>Set by</th>
+          </tr>
+        </thead> -->
+        <!-- <tbody>
+          <tr *ngFor="let item of subData">
+            <td>{{ item.partNo }}</td>
+            <td>{{ item.revision }}</td>
+            <td>{{ item.process }}</td>
+            <td>{{ item.mcType }}</td>
+            <td>{{ item.spec }}</td>
+            <td>{{ item.mcNo }}</td>
+            <td>{{ item.qty }}</td>
+            <td>{{ item.case }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.setBy }}</td>
+          </tr>
+        </tbody> -->
+      <!-- </table> -->
+    </div>
+  <!-- </div> -->
+</p-card>

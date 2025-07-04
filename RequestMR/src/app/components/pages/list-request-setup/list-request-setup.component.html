@@ -1,0 +1,93 @@
+<p-card>
+
+  <hr
+    style="height: 2px; border-width: 0; color: #4caf50; background-color: #4caf50"
+  />
+
+  <div class="table-container">
+    <!-- ตารางสำหรับแสดงข้อมูล -->
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Doc_no</th>
+          <th>Division</th>
+          <th>Factory</th>
+          <th>Date</th>
+          <th>Process</th>
+          <th>Total item</th>
+          <th>Status</th>
+          <th>Detail</th>
+          <th>Del</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ใช้ *ngFor เพื่อวนลูปข้อมูลและแสดงในแต่ละแถว -->
+        <tr *ngFor="let item of items; let i = index">
+          <td>{{ i + 1 }}</td> <!-- ลำดับที่ -->
+          <td>{{ item.Doc_no }}</td> <!-- หมายเลขเอกสาร -->
+          <td>{{ item.Division }}</td> <!-- แผนก -->
+          <td>{{ item.Factory }}</td> <!-- โรงงาน -->
+          <td>{{ item.Date }}</td> <!-- วันที่ -->
+          <td>{{ item.Process }}</td> <!-- กระบวนการ -->
+          <td>{{ item.TotalItem }}</td> <!-- จำนวนรวมรายการ -->
+          <td>{{ item.Status }}</td> <!-- สถานะ -->
+          <!-- ปุ่มสำหรับดูรายละเอียด -->
+          <td>
+            <button class="btn btn-detail" *ngIf="item.Docno"  (click)="goToDetail(item.Docno)">
+              <i class="pi pi-eye"></i>
+            </button>
+          </td>
+          <!-- ปุ่มสำหรับลบ -->
+          <td>
+            <button class="btn btn-delete" (click)="deleteItem(item)">
+              <i class="pi pi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination-container">
+    <!-- ปุ่มไปยังหน้าแรก -->
+    <button
+      class="page-btn"
+      [disabled]="currentPage === 1"
+      (click)="changePage(1)"
+    >
+      &laquo;
+    </button>
+
+    <!-- ปุ่มย้อนกลับ -->
+    <button
+      class="page-btn"
+      [disabled]="currentPage === 1"
+      (click)="changePage(currentPage - 1)"
+    >
+      &lsaquo;
+    </button>
+
+    <!-- ตัวเลขหน้าปัจจุบัน -->
+    <span class="current-page">{{ currentPage }}</span>
+
+    <!-- ปุ่มไปหน้าถัดไป -->
+    <button
+      class="page-btn"
+      [disabled]="currentPage === totalPages"
+      (click)="changePage(currentPage + 1)"
+    >
+      &rsaquo;
+    </button>
+
+    <!-- ปุ่มไปยังหน้าสุดท้าย -->
+    <button
+      class="page-btn"
+      [disabled]="currentPage === totalPages"
+      (click)="changePage(totalPages)"
+    >
+      &raquo;
+    </button>
+  </div>
+
+</p-card>

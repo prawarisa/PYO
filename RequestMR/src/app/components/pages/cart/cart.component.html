@@ -1,0 +1,151 @@
+<!-- แสดงข้อความเมื่อผู้ใช้ยังไม่ได้ลงชื่อเข้าใช้ -->
+<div class="flex justify-content-center mt-2" *ngIf="!currentUser.Emp_Code">
+  <h2> {{ '!!PLEASE SIGN IN' | translate }} </h2>
+</div>
+<div class="flex justify-content-center mt-2" *ngIf="currentUser.Emp_Code">
+  <div *ngIf="items.length == undefined">
+    <h2> !!Please request </h2>
+  </div>
+<!-- ตรวจสอบว่ามีรายการใน items หรือไม่ -->
+<div *ngIf="items.length > 0">
+  <p-card>
+    <!-- กลุ่มของ input สำหรับข้อมูลต่าง ๆ -->
+    <div class="flex align-items-center gap-2">
+      <label htmlFor="division">Division: </label>
+      <!-- Input สำหรับป้อน Division -->
+      <!-- การผูกข้อมูลกับ Division -->
+      <!-- สไตล์ของ input -->
+      <!-- ตั้งค่าการทำงานของ ngModel -->
+      <input
+        pInputText
+        type="text"
+        inputId="division"
+        [(ngModel)]="items[0].Division"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial"
+        [ngModelOptions]="{ standalone: true }"
+      />
+
+      <label htmlFor="factory">Factory: </label>
+      <!-- Input สำหรับป้อน Factory -->
+      <!-- การผูกข้อมูลกับ Factory -->
+      <!-- สไตล์ของ input -->
+      <!-- ตั้งค่าการทำงานของ ngModel -->
+
+      <input
+        pInputText
+        type="text"
+        inputId="factory"
+        [(ngModel)]="items[0].Factory"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial"
+        [ngModelOptions]="{ standalone: true }"
+      />
+
+      <label htmlFor="process">Process: </label>
+      <!-- Input สำหรับป้อน Process -->
+      <!-- การผูกข้อมูลกับ Process -->
+      <!-- สไตล์ของ input -->
+      <!-- ตั้งค่าการทำงานของ ngModel -->
+      <input
+        pInputText
+        type="text"
+        inputId="process"
+        [(ngModel)]="items[0].Process"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </div>
+    <br />
+
+    <!-- ตารางสำหรับแสดงรายการต่าง ๆ -->
+    <!-- ข้อมูลที่จะแสดงในตาราง -->
+    <!-- สไตล์ของตาราง -->
+    <div style="margin-top: -1rem">
+      <p-table
+        #dt1
+        [value]="items"
+        styleClass="p-datatable-striped p-datatable-gridlines"
+      >
+        <!-- Header ของตาราง -->
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 5%; text-align: center">No.</th>
+            <th style="width: 10%; text-align: center">Item no.</th>
+            <th style="width: 10%; text-align: center">Part no.</th>
+            <th style="width: 5%; text-align: center">MC</th>
+            <th style="width: 10%; text-align: center">Spec</th>
+            <th style="width: 5%; text-align: center">Usage</th>
+            <th style="width: 5%; text-align: center">MC no.</th>
+            <th style="width: 5%; text-align: center">Qty</th>
+            <th style="width: 5%; text-align: center">Case</th>
+            <th style="width: 5%; text-align: center">Result1</th>
+            <th style="width: 5%; text-align: center">Result2</th>
+            <th style="width: 5%; text-align: center">Result3</th>
+            <th style="width: 5%; text-align: center">Result4</th>
+            <th style="width: 5%; text-align: center">Result5</th>
+            <th style="width: 5%; text-align: center">Result6</th>
+            <th style="width: 5%; text-align: center">{{ 'DEL' | translate }}</th>
+          </tr>
+        </ng-template>
+
+        <!-- Body ของตาราง -->
+        <!-- ข้อมูลของแต่ละแถว -->
+        <!-- ดัชนีของแถว -->
+        <ng-template
+          pTemplate="body"
+          let-items
+          let-ri="rowIndex"
+        >
+          <tr>
+            <td style="text-align: center">{{ ri + 1 }}</td> <!-- แสดงหมายเลขแถว -->
+            <td style="text-align: center">{{ items.Item_no }}</td> <!-- แสดง Item no. -->
+            <td style="text-align: center">{{ items.Part_no }}</td> <!-- แสดง Part no. -->
+            <td style="text-align: center">{{ items.MC_type }}</td> <!-- แสดง MC type -->
+            <td style="text-align: center">{{ items.Spec }}</td> <!-- แสดง Spec -->
+            <td style="text-align: center">{{ items.Usage }}</td> <!-- แสดง Usage -->
+            <td style="text-align: center">{{ items.MC_no }}</td> <!-- แสดง MC no. -->
+            <td style="text-align: center">{{ items.Qty }}</td> <!-- แสดง Quantity -->
+            <td style="text-align: center">{{ items.Case_ }}</td> <!-- แสดง Case -->
+            <td style="text-align: center">{{ items.Result1 }}</td> <!-- แสดง Result1 -->
+            <td style="text-align: center">{{ items.Result2 }}</td> <!-- แสดง Result2 -->
+            <td style="text-align: center">{{ items.Result3 }}</td> <!-- แสดง Result3 -->
+            <td style="text-align: center">{{ items.Result4 }}</td> <!-- แสดง Result4 -->
+            <td style="text-align: center">{{ items.Result5 }}</td> <!-- แสดง Result5 -->
+            <td style="text-align: center">{{ items.Result6 }}</td> <!-- แสดง Result6 -->
+            <td>
+              <!-- ปุ่มลบสำหรับลบแถว -->
+              <!-- เรียกใช้งานฟังก์ชัน deleteAct เมื่อคลิก -->
+              <!-- ปิดปุ่มหากสถานะเป็น SetComplete -->
+              <button
+                pButton
+                icon="pi pi-trash"
+                class="p-button-danger"
+                (click)="deleteAct(items)"
+                [disabled]="items.ReqStatus == 'SetComplete'"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- เส้นแบ่ง -->
+    <hr style="height: 2px; border-width: 0; color: blue; background-color: blue" />
+    <div class="flex align-items-right gap-2">
+      <!-- ปุ่มสำหรับสร้างเลขเอกสาร -->
+      <!-- เรียกใช้งานฟังก์ชัน Create_Doc เมื่อคลิก -->
+      <!-- สร้างเลขที่เอกสาร -->
+      <p-button
+        icon="pi pi-check"
+
+        label="{{ 'CREATE DOC NO.' | translate }}"
+        styleClass="p-button-text"
+        (click)="Create_Doc()"
+      >
+      </p-button>
+    </div>
+  </p-card>
+</div>
+</div>

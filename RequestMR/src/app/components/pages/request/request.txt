@@ -1,0 +1,647 @@
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
+import { Router, NavigationExtras } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { DataService } from '../dataservice';
+import { timer } from 'rxjs';
+import * as moment from 'moment';
+import { AccountService } from 'src/app/services/account.service';
+import { SelectItem, MessageService } from 'primeng/api';
+import Swal from 'sweetalert2';
+import { ThisReceiver } from '@angular/compiler';
+import { Time } from '@angular/common';
+import { User } from '../../../api/user';
+interface CaseOption {
+  Case: string;
+  viewCase: string;
+}
+
+interface TableData {
+  // ... other fields
+  selectedCase: string;
+}
+
+@Component({
+  selector: 'app-request',
+  templateUrl: './request.component.html',
+  styleUrls: ['./request.component.scss'],
+  providers: [MessageService],
+})
+export class RequestComponent {
+
+  currentUser: any;
+  // dDate: Date;
+  inputDate: Date;
+  reqDate: Date;
+  reqtime: Time;
+  part_no: any;
+  partno: any;
+  Rev_: any;
+  Area_: any;
+  other_ = '';
+  qty_ = '';
+  fac_: any;
+  Doc_no = '';
+  item: any;
+
+  Item_no : any;
+  items2: any;
+  items3: any;
+  dDatecheck: Date;
+  nextDay: Date;
+  machineGroup: any;
+  machine_Group: any;
+  machineNo: any;
+  Div: any;
+  Fac: any;
+  useFor: any;
+  myForm!: FormGroup;
+  submitted = false;
+  ingredient: string;
+
+  division: any;
+  use_for: any;
+  empreq: string;
+  visibleother: boolean = false;
+  mcGroup: any;
+
+  public req_process: any;
+  jsonArg1 = new Object();
+  visibleform: boolean = false;
+  testform!: FormGroup;
+  docno: number;
+  req_part: any;
+  req_mc: any;
+  public PartDetail: any = [];
+  visiblearea: boolean = false;
+  Area: any;
+  MasterSpec: any;
+  selectspec: any;
+  filteredMC: any[] = [];
+  Process: any;
+  _Area: any;
+  select_spec: any;
+  datestatus: any;
+  urgent: any;
+  urgentcoomment: any;
+  visibleremark: boolean = false;
+  submit_setup: any;
+  OPIST_PartNo: any;
+  OPIST_Process: any;
+  OPIST_MC: any;
+  OPIST_ItemNo : any;
+
+  collectrequest: any;
+
+
+  Result1 : any;
+  Result2 : any;
+  Result3 : any;
+  Result4 : any;
+  Result5 : any;
+  Result6 : any;
+  SPEC : any;
+  ITEM_NO : any;
+  public items: any = [];
+
+
+
+
+
+
+
+
+  // isSetup : boolean = false;
+  // isDaily : boolean = false;
+  CaseSet : String = 'SET';
+  _Case : any;
+  // AllCase_:any;
+  isDaily = true;
+  AllCase_: CaseOption[] = [];
+  tableData: TableData[] = [
+    // ... initial data
+  ];
+  selectedItems: any[] = [];
+
+
+
+
+
+  constructor(
+    private dataService: DataService,
+    public account: AccountService,
+    private router: Router,
+    private fb: FormBuilder,
+    private api: ApiService,
+    private messageService: MessageService
+  ) {
+    this.Div = [
+      { label: '', value: '' },
+      { label: 'GM', value: 'GM' },
+      { label: 'PMC', value: 'PMC' },
+    ];
+    this.Fac = [
+      { label: '1', value: '1' },
+      { label: '2', value: '2' },
+      { label: '3', value: '3' },
+      { label: '4', value: '4' },
+      { label: '5', value: '5' },
+      { label: '6', value: '6' },
+      { label: '7', value: '7' },
+    ];
+  }
+  // saveSelectedItems() {
+  //   if (this.selectedItems.length === 0) {
+  //     Swal.fire('No items selected', 'Please select at least one item.', 'error');
+  //     return;
+  //   }
+
+  //   // Process the selected items
+  //   console.log('Selected Items:', this.selectedItems);
+
+  //   // Example of showing the selected items in an alert
+  //   Swal.fire({
+  //     title: 'Items Selected',
+  //     html: `<pre>${JSON.stringify(this.selectedItems, null, 2)}</pre>`,
+  //     icon: 'success',
+  //   });
+  // }
+
+
+
+  // onRowSelect(event: any) {
+  //   console.log('Row selected:', event.data);
+  // }
+
+  // onRowUnselect(event: any) {
+  //   console.log('Row unselected:', event.data);
+  // }
+
+  setAllCases() {
+    if (this.isDaily) {
+      this.AllCase_ = [
+        { Case: 'BRO', viewCase: 'BRO' },
+        { Case: 'BUR', viewCase: 'BUR' },
+        { Case: 'USA', viewCase: 'USA' },
+        { Case: 'HOL', viewCase: 'HOL' },
+        { Case: 'INV', viewCase: 'INV' },
+        { Case: 'MOD', viewCase: 'MOD' },
+        { Case: 'NON', viewCase: 'NON' },
+        { Case: 'RET', viewCase: 'RET' },
+        { Case: 'SPA', viewCase: 'SPA' },
+        { Case: 'STO', viewCase: 'STO' },
+        { Case: 'CHA', viewCase: 'CHA' }
+      ];
+    }
+    // else {
+    //   this.AllCase_ = [
+    //     { Case: 'SET', viewCase: 'SET' },
+    //   ];
+    // }
+  }
+
+  async ngOnInit() {
+
+    this.currentUser = this.account.getUser();
+
+    this.getpart();
+
+    this.myForm = this.fb.group({
+      partno: ['', Validators.required],
+      process: ['', Validators.required],
+      mc_type: ['', Validators.required],
+    });
+  }
+
+  getpart() {
+    this.api.get_part().subscribe({
+      next: (response) => {
+        this.req_part = response;
+        console.log(this.req_part);
+        return response.OPIST_PartNo;
+      },
+      error: (e) => console.error(e),
+    });
+  }
+
+  async getprocess(event) {
+    const OPIST_PartNo = event.value;
+    console.log(event.value);
+    if (event.value !== undefined) {
+      this.api.get_process(event.value).subscribe({
+        next: (response) => {
+          if (response.length > 0) {
+            this.req_process = response[0];
+
+            console.log(response);
+            return response.OPIST_Process;
+          }
+        },
+        error: (e) => console.error(e),
+      });
+    }
+  }
+
+  // async GetRevision(event) {
+  //   const OPIST_PartNo = event.value;
+  //   // console.log('This is revission',event.value)
+  //   if (event.value !== undefined) {
+  //     // console.log('This is revission',event.value)
+  //     this.api.getRevpart(event.value).subscribe({
+  //       next: (response) => {
+  //         if (response.length > 0) {
+  //           this.Rev_ = response[0].OPIST_DwgRev;
+  //           console.log('This is revission', this.Rev_);
+  //           // return response.OPIST_DwgRev;
+  //         }
+  //       },
+  //       error: (e) => console.error(e),
+  //     });
+  //   }
+  // }
+
+  async GetMachineNo(event) {
+    // console.log(event.value)
+    if (event.value !== undefined) {
+      const Process = event.value.OPIST_Process;
+      const data = {
+        OPIST_PartNo: this.part_no.OPIST_PartNo,
+        OPIST_Process: Process,
+      };
+      this.api
+        .getMCno(data)
+
+        .subscribe({
+          next: (response) => {
+            if (response.length > 0) {
+              this.req_mc = response[0];
+              this.Rev_ = response[0][0].OPIST_DwgRev;
+              console.log(response, this.Rev_, response[0][0].OPIST_DwgRev);
+              return response.OPIST_MC;
+            }
+          },
+          error: (e) => console.error(e),
+        });
+    }
+  }
+
+  Date() {
+    if (this.reqDate !== undefined) {
+      const today = new Date();
+      this.reqDate = today;
+      console.log(this.reqDate);
+    }
+  }
+  // partno
+  // process
+  // mc_type
+
+  // onSubmit() {
+  //   // this.get_doc_no();
+  //   // timer(7000);
+  //   // const OPIST_PartNo = this.part_no.OPIST_PartNo.value;
+  //   // const OPIST_Process = this.Process.OPIST_Process.value;
+  //   // const OPIST_MC = this.machineGroup.OPIST_MC.value;
+  //   const OPIST_PartNo = this.myForm.get('partno')?.value;
+  //   const OPIST_Process = this.myForm.get('process')?.value;
+  //   const OPIST_MC = this.myForm.get('mc_type')?.value;
+
+  //   console.log('Form Values:', { OPIST_PartNo, OPIST_Process, OPIST_MC });
+
+  //   if (
+  // OPIST_PartNo !== undefined &&
+  // OPIST_Process !== undefined &&
+  // OPIST_MC !== undefined
+  //   ) {
+  // const data = { OPIST_PartNo, OPIST_Process, OPIST_MC };
+  // console.log('Data sent to API:', data);
+
+  //     this.api.Post_ToolDetial(data)
+  //     .subscribe({
+  //       next: (response) => {
+  //         console.log('API Response:', response);
+  //         if (response.length > 0) {
+  //           this.submit_setup = response[0];
+  //           console.log(response);
+  //         }
+  //       },
+  //       error: (e) => console.error(e),
+  //       // if (response.length > 0 && response[0].length > 0) {
+  //       //   this.dataSource.data = response[0] as ToolDetail[];
+  //       // }
+  //     });
+  //   }
+  // }
+
+  // get_doc_no() {
+  //   this.api.get_doc_no().subscribe({
+  //     next: (response) => {
+  //       this.Doc_no = response[0].Doc_no;
+  //       console.log(this.Doc_no);
+  //       this.Addreq();
+  //     },
+  //     error: (e) => console.error(e),
+  //   });
+  // }
+
+  // onSubmit1() {
+  //   console.log(this.testform.value);
+  //   const table = {
+  //     Division: this.testform.value.partno,
+  //     Revision: this.testform.value.rev_,
+  //   };
+  //   console.log(table);
+  // }
+
+  Setup() {
+    this.isDaily = false;
+    this.enableForm();
+    const OPIST_PartNo = this.myForm.get('partno')?.value.OPIST_PartNo;
+    const OPIST_Process = this.myForm.get('process')?.value.OPIST_Process;
+    const OPIST_MC = this.myForm.get('mc_type')?.value.OPIST_MC;
+
+    if (OPIST_PartNo && OPIST_Process && OPIST_MC && this.enableForm!== undefined ) {
+      const data = { OPIST_PartNo, OPIST_Process, OPIST_MC };
+
+      this.api.Post_ToolDetial(data).subscribe({
+        next: (response) => {
+          if (response.length > 0) {
+            this.items = response[0];
+            console.log(this.items);
+            this.setAllCases();
+          }
+        },
+        error: (e) => console.error('API Error:', e),
+      });
+    }
+  }
+
+
+
+  Daily() {
+    this.isDaily = true;
+    this.enableForm();
+    const OPIST_PartNo = this.myForm.get('partno')?.value.OPIST_PartNo;
+    const OPIST_Process = this.myForm.get('process')?.value.OPIST_Process;
+    const OPIST_MC = this.myForm.get('mc_type')?.value.OPIST_MC;
+
+    if (OPIST_PartNo && OPIST_Process && OPIST_MC && this.enableForm!== undefined ) {
+      const data = { OPIST_PartNo, OPIST_Process, OPIST_MC };
+
+      this.api.Post_ToolDetial(data).subscribe({
+        next: (response) => {
+          if (response.length > 0) {
+            this.items = response[0];
+            console.log(this.items);
+            this.setAllCases();
+          }
+        },
+        error: (e) => console.error('API Error:', e),
+      });
+    }
+  }
+
+
+  deleteAct(index: number, data: any) {
+    var Data = data;
+    Swal.fire({
+      title: 'Do you want to Delete? No.' + [index + 1],
+      showDenyButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Don't Delete`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.items.splice(index, 1);
+        Swal.fire('Delete!', '', 'success');
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not Delete', '', 'info');
+      }
+    });
+  }
+
+  // Save(data: any) {
+  //   Swal.fire({
+  //     title: 'Do you want to Add?',
+  //     showDenyButton: true,
+  //     confirmButtonText: 'Yes',
+  //     denyButtonText: 'Don\'t Add!'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       if (this.items.length === 0) {
+  //         console.log('No items to Add');
+  //         return;
+  //       }
+
+  //       // กรองเฉพาะ items ที่ถูกเลือก
+  //       const checkedItems = this.items.filter(item => item.isChecked);
+
+  //       if (checkedItems.length === 0) {
+  //         console.log('No items selected');
+  //         return;
+  //       }
+
+  //       // ส่งข้อมูล items ไปยัง DataService
+  //       this.dataService.sendItems(checkedItems);
+
+  //       // หลังจากส่งเสร็จแล้ว เปลี่ยนเส้นทางไปยัง CartComponent
+  //       this.router.navigate(['/cart']); // หรือเส้นทางที่กำหนดไว้สำหรับ CartComponent
+  //     }
+  //   });
+  // }
+  // Save(filteredItems) {
+  //   Swal.fire({
+  //     title: 'Do you want to Save?',
+  //     showDenyButton: true,
+  //     confirmButtonText: 'Yes',
+  //     denyButtonText: `Don't Save`,
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       if (filteredItems.length === 0) {
+  //         return;
+  //       }
+
+  //       filteredItems.forEach(item => {
+  //         const data = {
+  //           Emp_Code: item.User,
+  //           Doc_no: item.Doc_no,
+  //           Division: item.division,
+  //           Factory: item.fac_,
+  //           Date_of_Req: item.date,
+  //           Item_no: item.ITEM_NO,
+  //           Part_no: item.OPIST_PartNo,
+  //           Process: item.OPIST_Process,
+  //           MC_type: item.OPIST_MC,
+  //           Spec: item.SPEC,
+  //           Usage: item.OPIST_Usage_pcs,
+  //           MC_no: item.MC_no,
+  //           Qty: item.Qty,
+  //           Case_: item.selectedCase,
+  //           Result1: item.Result1,
+  //           Result2: item.Result2,
+  //           Result3: item.Result3,
+  //           Result4: item.Result4,
+  //           Result5: item.Result5,
+  //           Result6: item.Result6,
+  //         };
+
+  //         // เรียก API เพื่อบันทึกข้อมูล
+  //         this.api.Reqtool_insert(data)
+  //           .subscribe({
+  //             next: async (response) => {
+  //               console.log(response);
+  //             },
+  //             error: (e) => console.error(
+  //               Swal.fire({
+  //                 icon: 'error',
+  //                 title: 'Oops...',
+  //                 text: 'Cannot save!',
+  //               })
+  //             )
+  //           });
+  //       });
+
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: 'Save Complete!',
+  //         confirmButtonText: 'OK',
+  //       }).then((result) => {
+  //         if (result.isConfirmed) {
+  //           this.Doc_no = '';
+  //           this.items = [];
+  //           this.cleardata();
+  //           this.router.navigate(['/pages/cart']);
+  //         }
+  //       });
+  //     } else if (result.isDenied) {
+  //       Swal.fire('Changes are not saved', '', 'info');
+  //     }
+  //   });
+  // }
+
+
+  saveSelectedRows() {
+    // กรองเฉพาะแถวที่มีการกรอก MC_no, Qty, และ Result1 หรือ ResultX
+    const filteredItems = this.items.filter(item =>
+      item.MC_no && item.Qty &&
+      (item.Result1 || item.Result2 || item.Result3 || item.Result4 || item.Result5 || item.Result6)
+    );
+
+    if (filteredItems.length === 0) {
+      Swal.fire('No data entered', 'Please enter values in MC no, Qty, or Results fields.', 'error');
+      return;
+    }
+
+    // สร้างอาเรย์ใหม่จากข้อมูลที่ถูกกรอง
+    const newArray = filteredItems.map(item => ({
+      Emp_Code: item.empCode,
+      Doc_no: item.Doc_No,
+      Division: item.division,
+      Factory: item.fac_,
+      Date_of_Req: item.date,
+      Item_no: item.ITEM_NO,
+      Part_no: item.OPIST_PartNo,
+      Process: item.OPIST_Process,
+      MC_type: item.OPIST_MC,
+      Spec: item.SPEC,
+      Usage: item.OPIST_Usage_pcs,
+      MC_no: item.MC_no,
+      Qty: item.Qty,
+      Case_: item.selectedCase,
+      Result1: item.Result1,
+      Result2: item.Result2,
+      Result3: item.Result3,
+      Result4: item.Result4,
+      Result5: item.Result5,
+      Result6: item.Result6,
+    }));
+
+    // ตรวจสอบข้อมูลในอาเรย์ใหม่
+    console.log('New Array:', newArray);
+
+    Swal.fire({
+      title: 'Do you want to Save?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: `Don't Save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        newArray.forEach(item => {
+          // เรียก API เพื่อบันทึกข้อมูลจากอาเรย์ใหม่
+          this.api.Reqtool_insert(item)
+            .subscribe({
+              next: async (response) => {
+                console.log(response);
+              },
+              error: (e) => console.error(
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Cannot save!',
+                })
+              )
+            });
+        });
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Save Complete!',
+          confirmButtonText: 'OK',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.Doc_no = '';
+            this.items = [];
+            this.cleardata();
+            this.router.navigate(['/pages/cart']);
+          }
+        });
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info');
+      }
+    });
+  }
+
+  sendItems() {
+    this.dataService.changeItems(this.items); // ส่ง items ไปยัง DataService
+  }
+  cleardata() {
+
+    this.part_no = undefined;
+    this.machineGroup = undefined;
+    this.Process = undefined;
+    this.Rev_ = undefined;
+    this.items= '';
+  }
+
+  async enableForm() {
+    if (this.division !== undefined && this.fac_ !== undefined) {
+      this.visibleform = true;
+      // this.inputDate = new Date()
+    } else {
+      this.visibleform = false;
+      this.inputDate = undefined;
+    }
+  }
+
+  enableOther() {
+    if (this.use_for != null) {
+      if (this.use_for.value == 'Other') {
+        this.visibleother = true;
+      } else {
+        this.visibleother = false;
+      }
+      // console.log(this.use_for.value)
+    }
+  }
+
+  consoleLog() {
+    if (this.machineGroup != null) {
+      console.log(this.machineGroup);
+    }
+  }
+}

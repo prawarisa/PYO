@@ -1,0 +1,162 @@
+<p-card>
+  <!-- ตัวเลือกdropdownด้านบน -->
+  <div class="container">
+    <h1>Summary</h1>
+    <div class="form-container">
+      <!-- แถวแรก -->
+      <div class="form-row">
+        <div class="form-item">
+          <label for="Type">Type</label>
+          <p-dropdown
+            [options]="typeOptions"
+            [(ngModel)]="selectedType"
+            placeholder="Select Type"
+            optionLabel="label"
+          ></p-dropdown>
+        </div>
+
+      <div class="form-item">
+        <label for="partNo">Part no.</label>
+        <p-dropdown
+          [options]="partNoOptions"
+          [(ngModel)]="selectedPartNo"
+          placeholder="Select Part no."
+          optionLabel="label"
+        ></p-dropdown>
+      </div>
+
+        <div class="form-item">
+          <label for="process">Process</label>
+          <p-dropdown
+            [options]="processOptions"
+            [(ngModel)]="selectedProcess"
+            placeholder="Select Process"
+          ></p-dropdown>
+        </div>
+
+      </div>
+
+      <!-- แถวสอง -->
+      <div class="form-row">
+        <div class="form-item">
+          <label for="itemNo">Item no.</label>
+          <p-dropdown
+            [options]="itemNoOptions"
+            [(ngModel)]="selectedItemNo"
+            placeholder="Select Item no."
+          ></p-dropdown>
+        </div>
+        <div class="form-item">
+          <label for="mcType">Mc.type</label>
+          <p-dropdown
+            [options]="mcTypeOptions"
+            [(ngModel)]="selectedMcType"
+            placeholder="Select Mc.type"
+          ></p-dropdown>
+        </div>
+        <div class="form-item">
+          <label for="spec">Spec</label>
+          <p-dropdown
+            [options]="specOptions"
+            [(ngModel)]="selectedSpec"
+            placeholder="Select Spec"
+          ></p-dropdown>
+        </div>
+
+      </div>
+
+      <!-- แถวสาม -->
+      <div class="form-row">
+        <div class="form-item">
+          <label for="mcNo">Mc no.</label>
+          <p-dropdown
+            [options]="mcNoOptions"
+            [(ngModel)]="selectedMcNo"
+            placeholder="Select Mc no."
+          ></p-dropdown>
+        </div>
+        <div class="form-item">
+          <label for="startDate">Date</label>
+          <p-calendar [(ngModel)]="startDate" [showIcon]="true"></p-calendar>
+        </div>
+        <div class="form-item">
+          <label for="endDate">Date</label>
+          <p-calendar [(ngModel)]="endDate" [showIcon]="true"></p-calendar>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-item">
+          <button class="search-button" (click)="onSearch()">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Charts -->
+  <div class="dashboard-container">
+    <div class="dashboard-title">Dashboard</div>
+
+    <!-- Row 1 -->
+    <div class="dashboard-row">
+      <div class="dashboard-card">
+        <h3>Type</h3>
+        <p [style.color]="selectedType?.color || 'black'">
+          {{ selectedType?.label || 'No Part Selected' }}
+        </p>
+
+      </div>
+      <div class="dashboard-card">
+        <h3>Part No.</h3>
+        <p [style.color]="selectedPartNo?.color || 'black'">
+          {{ selectedPartNo?.label || 'No Part Selected' }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row">
+      <div class="chart">
+        <h3>Process</h3>
+        <p-chart type="pie" [data]="processChartData"></p-chart>
+      </div>
+      <div class="chart">
+        <h3>MC Type</h3>
+        <p-chart type="pie" [data]="mcTypeChartData"></p-chart>
+      </div>
+      <div class="chart">
+        <h3>Case</h3>
+        <p-chart type="pie" [data]="caseChartData"></p-chart>
+      </div>
+    </div>
+
+
+    <!-- Row 3 -->
+    <div class="row">
+      <div class="chart">
+        <h3>Item No</h3>
+        <p-chart type="bar" [data]="itemNoChartData"></p-chart>
+      </div>
+      <div class="chart">
+        <h3>Spec</h3>
+        <p-chart type="bar" [data]="specChartData"></p-chart>
+      </div>
+      <div class="chart">
+        <h3>MC No</h3>
+        <p-chart type="bar" [data]="mcNoChartData"></p-chart>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="row summary-row full-width">
+      <div class="chart large full-width">
+        <h3> Monthly summary</h3>
+        <p-chart type="bar" [data]="stackedChartData" [options]="stackedBarOptions"></p-chart>
+      </div>
+    </div>
+    <!-- เส้นแบ่งส่วน -->
+    <hr
+    style="height: 2px; border-width: 0; color: #4caf50; background-color: #4caf50"
+    />
+  </div>
+</p-card>

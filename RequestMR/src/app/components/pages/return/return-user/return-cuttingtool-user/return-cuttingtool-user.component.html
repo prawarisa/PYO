@@ -1,0 +1,128 @@
+<p-card>
+  <div class="page-container">
+    <!-- Document Information Section -->
+    <div class="info-section">
+      <div class="info-row">
+        <div class="info-group">
+          <label for="doc_no">Doc_no:</label>
+          <input
+            pInputText
+            type="text"
+            id="doc_no"
+            [(ngModel)]="items[0].Doc_no"
+            class="p-inputtext"
+            readonly
+          />
+        </div>
+        <div class="info-group">
+          <label for="division">Division:</label>
+          <input
+            pInputText
+            type="text"
+            id="division"
+            [(ngModel)]="items[0].Division"
+            class="p-inputtext"
+            readonly
+          />
+        </div>
+        <div class="info-group">
+          <label for="factory">Factory:</label>
+          <input
+            pInputText
+            type="text"
+            id="factory"
+            [(ngModel)]="items[0].Factory"
+            class="p-inputtext"
+            readonly
+          />
+        </div>
+        <div class="info-group">
+          <label for="process">Process:</label>
+          <input
+            pInputText
+            type="text"
+            id="process"
+            [(ngModel)]="items[0].Process"
+            class="p-inputtext"
+            readonly
+          />
+        </div>
+        <div class="info-group">
+          <label for="date_of_req">Date of Req:</label>
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="formattedDate"
+            class="p-inputtext"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Table Section -->
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Item no.</th>
+            <th>Part no.</th>
+            <th>MC type</th>
+            <th>Spec</th>
+            <th>Usage</th>
+            <th>MC no.</th>
+            <th>Qty</th>
+            <th>Case</th>
+            <th>Result1</th>
+            <th>Result2</th>
+            <th>Result3</th>
+            <th>Result4</th>
+            <th>Result5</th>
+            <th>Result6</th>
+            <th>Status</th>
+            <th>Set by</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items; let i = index">
+            <td>{{ i + 1 }}</td> <!-- ใช้ i + 1 เพื่อเริ่มต้นลำดับที่ 1 -->
+            <td>{{ item?.Item_no }}</td>
+            <td>{{ item?.Part_no }}</td>
+            <td>{{ item?.MC_type }}</td>
+            <td>{{ item?.Spec }}</td>
+            <td>{{ item?.Usage }}</td>
+            <td>{{ item?.MC_no }}</td>
+            <td>{{ item?.Qty }}</td>
+            <td>{{ item?.Case_ }}</td>
+            <td>{{ item?.Result1 }}</td>
+            <td>{{ item?.Result2 }}</td>
+            <td>{{ item?.Result3 }}</td>
+            <td>{{ item?.Result4 }}</td>
+            <td>{{ item?.Result5 }}</td>
+            <td>{{ item?.Result6 }}</td>
+            <td>{{ item?.Status }}</td>
+            <td>{{ item?.Set_by }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Problem Section -->
+    <div class="problem-section">
+      <h2>Problem</h2>
+      <textarea [(ngModel)]="problemDescription" placeholder="Describe the problem here"></textarea>
+    </div>
+
+    <!-- Return Button Section -->
+    <div class="return-section">
+      <button
+        pButton
+        type="button"
+        label="Return"
+        class="p-button-danger"
+        (click)="onReturn(items[0].Doc_no)"
+      ></button>
+    </div>
+  </div>
+</p-card>

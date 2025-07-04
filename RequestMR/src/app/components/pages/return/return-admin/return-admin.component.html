@@ -1,0 +1,100 @@
+<div class="main-content">
+  <h2 class="page-title">Return Management</h2>
+  <div class="buttons-container">
+    <div style="position: relative; display: inline-block;">
+      <!-- ปุ่มสำหรับ Cutting Tool Admin -->
+      <button
+        pButton
+        label="Cutting Tool"
+        class="custom-button cutting-tool"
+        routerLink="/pages/return-cuttingtool-admin"
+      ></button>
+      <span
+      class="badge"
+      *ngIf="request > 0"
+    >
+      {{ request }}
+    </span>
+    </div>
+
+    <!-- ปุ่มสำหรับ Cutting Oil Admin -->
+    <div style="position: relative; display: inline-block;">
+      <button
+        pButton
+        label="Cutting-Oil"
+        class="custom-button cutting-oil"
+        routerLink="/pages/return-oil-admin"
+      ></button>
+      <span
+        class="badge"
+        *ngIf="cuttingOilRequest > 0"
+      >
+        {{ cuttingOilRequest }}
+      </span>
+    </div>
+
+    <!-- ปุ่มสำหรับ Grinding Material Admin -->
+    <div style="position: relative; display: inline-block;">
+      <button
+        pButton
+        label="Grinding Material"
+        class="custom-button grinding"
+        routerLink="/pages/return-grinding-admin"
+      ></button>
+      <span
+        class="badge"
+        *ngIf="grindingMaterialCount > 0"
+      >
+        {{ grindingMaterialCount }}
+      </span>
+    </div>
+
+    <!-- ปุ่มสำหรับ Machine Setup Tool -->
+    <div style="position: relative; display: inline-block;">
+      <button
+        pButton
+        label="Machine Set Up Tool"
+        class="custom-button setup-tool"
+        routerLink="/pages/return-setup-admin"
+      ></button>
+      <span
+        class="badge"
+        *ngIf="machineSetupCount > 0"
+      >
+        {{ machineSetupCount }}
+      </span>
+    </div>
+
+    <!-- ปุ่มสำหรับ Cleaning Solution -->
+    <div style="position: relative; display: inline-block;">
+      <button
+        pButton
+        label="Cleaning Solution"
+        class="custom-button cleaning"
+        routerLink="/pages/return-cleaning-admin"
+      ></button>
+      <span
+        class="badge"
+        *ngIf="cleaningSolutionCount > 0"
+      >
+        {{ cleaningSolutionCount }}
+      </span>
+    </div>
+
+    <!-- ปุ่มสำหรับ Other Admin -->
+    <div style="position: relative; display: inline-block;">
+      <button
+        pButton
+        label="Other"
+        class="custom-button other"
+        routerLink="/pages/return-other-admin"
+      ></button>
+      <span
+        class="badge"
+        *ngIf="otherCount > 0"
+      >
+        {{ otherCount }}
+      </span>
+    </div>
+  </div>
+</div>

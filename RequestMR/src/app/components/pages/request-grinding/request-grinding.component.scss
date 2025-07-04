@@ -1,0 +1,143 @@
+// .material-request-container {
+//   padding: 20px;
+//   background-color: #ffffff;
+//   border-radius: 8px;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//   max-width: 1200px;
+//   margin: auto;
+// }
+
+h3.text-center {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.separator {
+  border: none;
+  height: 2px;
+  background: #4caf50;
+  margin: 20px 0;
+}
+
+.flex {
+  display: flex; /* ใช้ Flexbox */
+}
+
+.justify-end {
+  justify-content: flex-end; /* จัดตำแหน่งให้อยู่ด้านขวาสุด */
+}
+
+.align-items-center {
+  align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+}
+
+.gap-2 {
+  gap: 15px; /* ระยะห่างระหว่างองค์ประกอบภายใน */
+}
+
+label {
+  margin-right: 8px; /* เพิ่มระยะห่างระหว่าง label และ dropdown */
+}
+
+
+.form-section {
+  display: flex;
+  gap: 10px !important;
+  margin-bottom: 20px;
+  justify-content: flex-start;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* สไตล์สำหรับปุ่ม */
+.button-container {
+  display: flex; /* ใช้ flexbox */
+  justify-content: space-between; /* จัดวางปุ่มให้มีระยะห่างเท่าๆ กัน */
+  gap: 15px; /* ระยะห่างระหว่างปุ่ม */
+  margin-bottom: 20px; /* ระยะห่างด้านล่าง */
+}
+
+.button-container button {
+  width: 100%; /* ความกว้างเต็มคอลัมน์ */
+  height: 50px; /* ความสูงของปุ่ม */
+  font-size: 16px; /* ขนาดข้อความในปุ่ม */
+  font-weight: bold; /* ข้อความตัวหนา */
+  color: white; /* สีข้อความ */
+  border: none; /* ไม่มีเส้นขอบ */
+  border-radius: 5px; /* มุมโค้งมน */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* เอฟเฟกต์ */
+}
+
+.button-container button:hover {
+  transform: scale(1.05); /* ขยายเล็กน้อยเมื่อ hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* เพิ่มเงาเมื่อ hover */
+}
+
+/* ปุ่ม Setup */
+button.setup-button {
+  background-color: #fbc02d; /* สีเหลือง */
+}
+
+/* ปุ่ม Other */
+button.other-button {
+  background-color: #4caf50; /* สีเขียว */
+}
+
+/* ปุ่ม Clear */
+button.clear-button {
+  background-color: #03a9f4; /* สีฟ้า */
+}
+
+
+.table-container {
+  overflow-y: auto; /* เปิดการเลื่อนในแนวตั้ง */
+  overflow-x: auto; /* เปิดการเลื่อนในแนวนอน */
+  position: relative; /* ทำให้ dropdown แสดงผลได้อย่างถูกต้อง */
+  max-height: 400px; /* จำกัดความสูงของตาราง */
+}
+
+
+p-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+p-table th,
+p-table td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+p-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+p-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+p-table tr:hover {
+  background-color: #e8f0fe;
+}
+.p-dropdown-panel {
+  position: fixed !important; /* ทำให้ dropdown ไม่ถูกจำกัดภายใน container */
+  z-index: 1050; /* ตั้งค่าความสำคัญให้ dropdown อยู่ด้านบน */
+}
+.p-table-wrapper {
+  overflow: visible !important; /* ป้องกันการตัด dropdown */
+}

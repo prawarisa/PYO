@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+$gutter: 1rem; // for primeflex grid system
+
+/* Importing layout styles */
+@import "assets/layout/styles/layout/layout.scss"; // นำเข้าสไตล์เลย์เอาต์จากไฟล์ที่กำหนด
+
+/* PrimeNG Styles */
+@import "../node_modules/primeng/resources/primeng.min.css"; // นำเข้าสไตล์หลักของ PrimeNG
+@import "../node_modules/primeflex/primeflex.scss"; // นำเข้าสไตล์ของ PrimeFlex สำหรับการจัดรูปแบบ
+@import "../node_modules/primeicons/primeicons.css"; // นำเข้าสไตล์ของไอคอน PrimeNG
+
+/* Demo Styles */
+@import "assets/demo/styles/flags/flags.css"; // นำเข้าสไตล์สำหรับธง (flags)
+@import "assets/demo/styles/badges.scss"; // นำเข้าสไตล์สำหรับป้าย (badges)
+@import "assets/demo/styles/code.scss"; // นำเข้าสไตล์สำหรับโค้ด (code)
+
+html,
+body {
+  height: 100%; // กำหนดให้ html และ body มีความสูงเต็มที่
+}
+
+body {
+  margin: 0; // กำจัด margin ของ body
+  font-family: Roboto, "Helvetica Neue", sans-serif; // กำหนดฟอนต์ของ body
+}

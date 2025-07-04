@@ -1,0 +1,107 @@
+
+  <p-card *ngIf="this.items.length  > 0">
+    <!-- เริ่มต้นการใช้ p-card จาก PrimeNG -->
+    <!-- แสดงระยะห่างแนวตั้ง -->
+    <!-- เริ่มต้นการใช้ p-table จาก PrimeNG -->
+    <!-- กำหนด reference ให้กับ p-table -->
+    <!-- กำหนดค่าของ p-table เป็น items -->
+    <!-- กำหนดคลาส CSS สำหรับ p-table -->
+    <p-table
+      #dt1
+      [value]="items"
+      [paginator]="true"
+      [rows] = "10"
+      styleClass="p-datatable-striped p-datatable-gridlines"
+    >
+      <ng-template pTemplate="header">
+        <!-- กำหนดเทมเพลตสำหรับหัวตาราง -->
+        <tr>
+          <!-- เริ่มต้นแถวในหัวตาราง -->
+          <th style="width: 5%; text-align: center">{{ 'NO' | translate }} </th>
+          <!-- คอลัมน์หมายเลข -->
+          <th style="width: 10%; text-align: center">{{ 'DOC NO' | translate }} </th>
+          <!-- คอลัมน์หมายเลขเอกสาร -->
+          <th style="width: 5%; text-align: center">Division</th>
+          <!-- คอลัมน์ฝ่าย -->
+          <th style="width: 5%; text-align: center">Factory</th>
+          <!-- คอลัมน์โรงงาน -->
+          <th style="width: 10%; text-align: center">{{ 'DATE' | translate }}</th>
+          <!-- คอลัมน์วันที่ -->
+          <th style="width: 10%; text-align: center">Process</th>
+          <!-- คอลัมน์กระบวนการ -->
+          <th style="width: 5%; text-align: center">Total item</th>
+          <!-- คอลัมน์จำนวนรายการทั้งหมด -->
+          <th style="width: 10%; text-align: center">{{ 'STATUS' | translate }}</th>
+          <!-- คอลัมน์สถานะ -->
+          <th style="width: 5%; text-align: center">{{ 'DETAIL' | translate }}</th>
+          <!-- คอลัมน์รายละเอียด -->
+          <th style="width: 5%; text-align: center">{{ 'DEL' | translate }}</th>
+          <!-- คอลัมน์ลบ -->
+        </tr>
+      </ng-template>
+      <!-- กำหนดเทมเพลตสำหรับร่างกายตาราง -->
+      <!-- ใช้ let เพื่อให้เข้าถึงตัวแปร items -->
+      <!-- กำหนดตัวแปร editing (ไม่ถูกใช้ในโค้ดนี้) -->
+      <!-- ใช้ let เพื่อให้เข้าถึงหมายเลขแถว -->
+      <ng-template
+        pTemplate="body"
+        let-items
+        let-editing="editing"
+        let-ri="rowIndex"
+      >
+        <tr>
+          <!-- เริ่มต้นแถวในร่างกายตาราง -->
+          <td style="text-align: center">{{ ri + 1 }}</td>
+          <!-- แสดงหมายเลขแถว -->
+          <td style="text-align: center">{{ items.Doc_no }}</td>
+          <!-- แสดงหมายเลขเอกสาร -->
+          <td style="text-align: center">{{ items.Division }}</td>
+          <!-- แสดงฝ่าย -->
+          <td style="text-align: center">{{ items.Factory }}</td>
+          <!-- แสดงโรงงาน -->
+          <td style="text-align: center">{{ items.Date_of_Req }}</td>
+          <!-- แสดงวันที่ของคำขอ -->
+          <td style="text-align: center">{{ items.Process }}</td>
+          <!-- แสดงกระบวนการ -->
+          <td style="text-align: center">{{ items.Total_items }}</td>
+          <!-- แสดงจำนวนรายการทั้งหมด -->
+          <td style="text-align: center">{{ items.Status }}</td>
+          <!-- แสดงสถานะ -->
+          <td style="text-align: center">
+            <!-- เริ่มต้นเซลล์สำหรับปุ่มรายละเอียด -->
+            <!-- ใช้ pButton จาก PrimeNG -->
+            <!-- กำหนดการจัดตำแหน่งปุ่ม -->
+            <!-- กำหนดไอคอนสำหรับปุ่ม -->
+            <!-- กำหนดคลาส CSS สำหรับปุ่ม -->
+            <!-- เรียกฟังก์ชัน Nav_Detail เมื่อคลิกปุ่ม -->
+            <!-- ปิดการใช้งานปุ่มถ้าสถานะคำขอเป็น 'GO!!' -->
+            <button
+              pButton
+              style="text-align: center"
+              icon="pi pi-eye"
+              class="p-button-Disabled"
+              (click)="Nav_Detail(items.Doc_no,items.Status,items.Local,items.Emp_Code)"
+              [disabled]="items.ReqStatus == 'GO!!'"
+            ></button>
+          </td>
+          <td style="text-align: center">
+            <!-- เริ่มต้นเซลล์สำหรับปุ่มลบ -->
+            <!-- ใช้ pButton จาก PrimeNG -->
+            <!-- กำหนดไอคอนสำหรับปุ่ม -->
+            <!-- กำหนดคลาส CSS สำหรับปุ่มลบ -->
+            <!-- เรียกฟังก์ชัน deleteAct เมื่อคลิกปุ่ม -->
+            <!-- ปิดการใช้งานปุ่มถ้าสถานะคำขอเป็น 'SetComplete' -->
+            <button
+              pButton
+              icon="pi pi-trash"
+              class="p-button-danger"
+              (click)="deleteAct(items)"
+              [disabled]="items.ReqStatus == 'SetComplete'"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <!-- สิ้นสุดการใช้ p-table -->
+  </p-card>
+  <!-- สิ้นสุดการใช้ p-card -->

@@ -1,0 +1,72 @@
+/* การปรับแต่งสไตล์สำหรับหน้าจอที่มีความกว้างสูงสุด 1380px */
+@media (max-width: 1380px) {
+  /* การปรับแต่งสไตล์ของ label */
+  label {
+    color: #000000; /* สีของข้อความเป็นสีดำ */
+    font-size: 14px !important; /* ขนาดฟอนต์ 14px */
+    font-weight: 500 !important; /* น้ำหนักฟอนต์ 500 */
+    display: block; /* แสดง label เป็น block */
+    margin-right: 1rem; /* ระยะห่างด้านขวา */
+  }
+
+  /* การปรับแต่งสไตล์ของปุ่ม */
+  button {
+    span {
+      font-size: small !important; /* ขนาดฟอนต์ของ span ในปุ่มเป็นขนาดเล็ก */
+    }
+  }
+
+  /* การปรับแต่งสไตล์สำหรับ label ภายใน .symbol */
+  .symbol > label {
+    font-size: 12px !important; /* ขนาดฟอนต์ 12px */
+  }
+
+  /* การปรับแต่งความกว้างของ .process */
+  .process {
+    width: 100px !important; /* ความกว้าง 100px */
+  }
+}
+
+/* สไตล์สำหรับ .container */
+.container {
+  display: flex; /* ใช้ flexbox เพื่อจัดเรียง */
+  justify-content: space-between; /* จัดให้มีระยะห่างระหว่าง items */
+  align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+
+  /* การปรับแต่ง .p-col-4 */
+  .p-col-4 {
+    flex: 1; /* ให้แต่ละคอลัมน์มีขนาดเท่ากัน */
+    margin: 0 5px; /* ระยะห่างซ้าย-ขวา 5px */
+
+    /* การปรับแต่งปุ่มในคอลัมน์ */
+    button {
+      width: 100%; /* ให้ปุ่มมีความกว้างเต็มที่ */
+      height: 50px; /* ความสูงของปุ่ม 50px */
+    }
+  }
+}
+
+/* สไตล์สำหรับ input element */
+.input-element {
+  width: 100%; /* ความกว้างเต็มที่ */
+  padding: 5px; /* ระยะขอบด้านใน 5px */
+  background-color: #f2f2f2; /* สีพื้นหลัง */
+  border: none; /* ไม่มีขอบ */
+  border-radius: 3px; /* มุมโค้ง 3px */
+}
+
+/* การตั้งค่าสำหรับปุ่มที่มีคลาสเฉพาะ */
+.by-me-1 {
+  background-color: var(--yellow-400); /* สีพื้นหลังสำหรับปุ่ม 1 */
+  border-color: var(--yellow-500); /* สีขอบสำหรับปุ่ม 1 */
+}
+
+.by-me-2 {
+  background-color: var(--green-400); /* สีพื้นหลังสำหรับปุ่ม 2 */
+  border-color: var(--green-500); /* สีขอบสำหรับปุ่ม 2 */
+}ฟ
+
+.by-me-3 {
+  background-color: var(--cyan-200); /* สีพื้นหลังสำหรับปุ่ม 3 */
+  border-color: var(--cyan-300); /* สีขอบสำหรับปุ่ม 3 */
+}

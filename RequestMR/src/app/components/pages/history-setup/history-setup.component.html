@@ -1,0 +1,42 @@
+<p-card>
+  <div class="history-container">
+    <!-- Header -->
+    <h2>History Request</h2>
+
+    <!-- Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Doc_no</th>
+            <th>Division</th>
+            <th>Factory</th>
+            <th>Date</th>
+            <th>Process</th>
+            <th>Status</th>
+            <th>Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Loop through the items -->
+          <tr *ngFor="let item of items; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.docNo }}</td>
+            <td>{{ item.division }}</td>
+            <td>{{ item.factory }}</td>
+            <td>{{ item.date | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+            <td>{{ item.process }}</td>
+            <td>{{ item.status }}</td>
+            <td>
+              <!-- Detail Button -->
+              <button class="detail-btn" (click)="viewDetail(item.docNo)">
+                <i class="pi pi-eye"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</p-card>

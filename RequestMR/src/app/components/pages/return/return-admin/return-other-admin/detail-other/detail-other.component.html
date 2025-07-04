@@ -1,0 +1,70 @@
+<p-card>
+  <div class="detail-container">
+    <!-- ส่วนหัวข้อมูล -->
+    <div class="header-info">
+      <label><strong>Doc no:</strong></label>
+      <input type="text" [value]="headerInfo.docNo" readonly />
+
+      <label><strong>Division:</strong></label>
+      <input type="text" [value]="headerInfo.division" readonly />
+
+      <label><strong>Factory:</strong></label>
+      <input type="text" [value]="headerInfo.factory" readonly />
+
+      <label><strong>Process:</strong></label>
+      <input type="text" [value]="headerInfo.process" readonly />
+    </div>
+
+    <!-- แสดงวันที่ -->
+    <div class="date-info">
+      <label><strong>Date:</strong></label>
+      <input type="text" [value]="headerInfo.date | date: 'dd/MM/yyyy'" readonly />
+    </div>
+
+    <!-- ตารางข้อมูล -->
+    <table>
+      <thead>
+        <tr>
+          <th>Item no.</th>
+          <th>Part no.</th>
+          <th>MC type</th>
+          <th>Spec</th>
+          <th>MC no.</th>
+          <th>Qty</th>
+          <th>Case</th>
+          <th>Status</th>
+          <th>Sent by</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of tableData">
+          <td>{{ item.itemNo }}</td>
+          <td>{{ item.partNo }}</td>
+          <td>{{ item.mcType }}</td>
+          <td>{{ item.spec }}</td>
+          <td>{{ item.mcNo }}</td>
+          <td>{{ item.qty }}</td>
+          <td>{{ item.case }}</td>
+          <td>{{ item.status }}</td>
+          <td>{{ item.sentby }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ช่อง Problem -->
+    <div class="problem-section">
+      <h3>Problem</h3>
+      <textarea
+        rows="5"
+        [(ngModel)]="problemDetails"
+        placeholder="Enter the problem details here..."
+      ></textarea>
+    </div>
+
+    <!-- ปุ่ม Back -->
+    <div class="button-section">
+      <button class="btn-back" (click)="goBack()">Back</button>
+    </div>
+  </div>
+</p-card>
+

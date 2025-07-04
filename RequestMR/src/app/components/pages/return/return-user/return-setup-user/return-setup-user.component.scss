@@ -1,0 +1,49 @@
+.page-container {
+  padding: 20px;
+}
+
+.info-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.info-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.problem-section {
+  margin-top: 20px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+
+.return-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}

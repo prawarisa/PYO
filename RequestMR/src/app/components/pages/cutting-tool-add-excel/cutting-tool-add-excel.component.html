@@ -1,0 +1,37 @@
+<div class="upload-container">
+  <h2>Upload Excel file</h2>
+
+  <!-- ไอคอนโฟลเดอร์ -->
+  <div class="icon-container">
+    <i class="pi pi-folder"></i> <!-- ไอคอนสำหรับการแสดงโฟลเดอร์ -->
+  </div>
+
+  <!-- ช่องสำหรับเลือกไฟล์ -->
+  <div>
+    <!-- Input ไฟล์ที่ซ่อน -->
+    <input type="file" id="fileInput" (change)="onFileSelected($event)" hidden />
+    <!-- ปุ่มสำหรับเลือกไฟล์ -->
+    <button type="button" class="btn-choose" (click)="triggerFileInput()">Choose file</button>
+  </div>
+
+  <!-- แสดงชื่อไฟล์ที่เลือก -->
+  <div *ngIf="selectedFileName" class="file-info">
+    Selected file: {{ selectedFileName }}
+  </div>
+
+  <!-- ปุ่มสำหรับอัปโหลดไฟล์ -->
+  <div>
+    <button type="button" class="btn-upload" (click)="onUpload()">Upload</button>
+  </div>
+
+  <!-- แสดง Progress Bar ระหว่างการอัปโหลด -->
+  <div *ngIf="showProgress">
+    <p-progressBar [value]="uploadProgress"></p-progressBar>
+    <p>{{ uploadProgress }}%</p>
+  </div>
+
+  <!-- ปุ่มย้อนกลับ -->
+  <div class="button-back-container">
+    <button type="button" class="btn-back" (click)="onBack()">Back</button>
+  </div>
+</div>

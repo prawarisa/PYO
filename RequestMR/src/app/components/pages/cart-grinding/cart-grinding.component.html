@@ -1,0 +1,61 @@
+<p-card>
+  <div class="material-request-container">
+    <!-- Form Section -->
+    <div class="form-header">
+      <label>Division:</label>
+      <input type="text" placeholder="Enter Division" [(ngModel)]="division" />
+      <label>Factory:</label>
+      <input type="text" placeholder="Enter Factory" [(ngModel)]="factory" />
+      <label>Process:</label>
+      <input type="text" placeholder="Enter Process" [(ngModel)]="process" />
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Item No</th>
+            <th>Part No</th>
+            <th>Process</th>
+            <th>MC Type</th>
+            <th>Spec</th>
+            <th>MC No</th>
+            <th>Qty</th>
+            <th>Case</th>
+            <th>DEL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.itemNo }}</td>
+            <td>{{ item.partNo }}</td>
+            <td>{{ item.process }}</td>
+            <td>{{ item.mcType }}</td>
+            <td>{{ item.spec }}</td>
+            <td>{{ item.mcNo }}</td>
+            <td>{{ item.qty }}</td>
+            <td>{{ item.case }}</td>
+
+            <td>
+               <!-- ปุ่มลบ -->
+            <button class="delete-btn" (click)="deleteRow(i)">
+              <i class="pi pi-trash"></i>
+            </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+     <!-- เส้นแบ่ง -->
+     <hr style="height: 2px; border-width: 0; color: blue; background-color: blue" />
+    <!-- Button -->
+    <div class="button-container">
+      <button class="create-doc-btn" (click)="createDoc()">
+        Create Doc no.
+      </button>
+    </div>
+  </div>
+</p-card>

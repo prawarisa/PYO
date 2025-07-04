@@ -1,0 +1,432 @@
+<!-- กรองคนที่ยังไม่ได้ทำการ Sign in ไม่ให้ทำกรอก request -->
+<div class="flex justify-content-center mt-2" *ngIf="!currentUser.Emp_Code">
+  <h2>{{ '!!PLEASE SIGN IN' | translate }}</h2>
+</div>
+
+<!-- Start request tool block -->
+<!-- จะปรากฏให้เห็นเมื่อ Sign in แล้ว -->
+<p-card *ngIf="currentUser.Emp_Code">
+  <h3 class="text-center mb-0">{{ 'MATERIAL REQUEST' | translate }}</h3>
+  <!-- Start Division && Factory block -->
+  <div class="flex" style="margin-top: -2rem">
+    <div class="flex-1"></div>
+    <div class="flex align-items-left gap-2">
+      <!--
+        inputId="div"                      กำหนด ID สำหรับ dropdown แรก ซึ่งใช้ในการอ้างอิง
+        [autoDisplayFirst]="false"         ไม่ให้แสดงค่าตัวแรกใน dropdown อัตโนมัติ
+        [options]="Div"                    เชื่อมต่อกับข้อมูลตัวเลือกที่ชื่อ Div
+        [(ngModel)]="div_"                 เชื่อม binding กับตัวแปร div_ เพื่อเก็บค่าที่เลือก
+        optionLabel="label"                กำหนดชื่อของตัวเลือกที่จะแสดงใน dropdown
+        -->
+      <div class="flex align-items-center">
+        <label htmlFor="div">Div :</label>
+        <p-dropdown
+          inputId="div"
+          [autoDisplayFirst]="false"
+          [options]="Div"
+          [(ngModel)]="div_"
+          optionLabel="label"
+        ></p-dropdown>
+      </div>
+      <!--
+        inputId="fac"                       กำหนด ID สำหรับ dropdown ที่สอง
+        [autoDisplayFirst]="false"         ไม่ให้แสดงค่าตัวแรกใน dropdown อัตโนมัติ
+        [options]="Fac"                    เชื่อมต่อกับข้อมูลตัวเลือกที่ชื่อ Fac
+        [(ngModel)]="fac_"                 เชื่อม binding กับตัวแปร fac_ เพื่อเก็บค่าที่เลือก
+        optionLabel="label"                กำหนดชื่อของตัวเลือกที่จะแสดงใน dropdown
+        -->
+      <div class="flex align-items-center">
+        <label htmlFor="fac">Fac :</label>
+        <p-dropdown
+          inputId="fac"
+          [autoDisplayFirst]="false"
+          [options]="Fac"
+          [(ngModel)]="fac_"
+          optionLabel="label"
+        ></p-dropdown>
+      </div>
+    </div>
+  </div>
+  <!-- End Division && Factory block -->
+
+  <!-- เส้นหน้า -->
+  <hr
+    style="height: 2px; border-width: 0; color: #4caf50; background-color: #4caf50"
+  />
+
+  <!-- Start formGroup เก็บค่า partno,process,mctype,revision -->
+  <!-- สร้างฟอร์มที่ใช้ Reactive Forms โดยเชื่อมต่อกับ myForm -->
+  <form [formGroup]="myForm">
+    <!-- กำหนด layout เป็น grid พร้อม padding -->
+    <div class="grid p-fluid p-4">
+      <!-- กำหนดให้มีคอลัมน์เต็ม 12 ช่อง -->
+      <div class="col-12">
+        <!-- กำหนดการจัดวางฟอร์มใน grid -->
+        <div class="p-fluid p-formgrid grid mb-0" style="margin-top: -3rem">
+          <!-- เริ่มฟิลด์ที่เป็นคอลัมน์ -->
+          <div class="field col">
+            <!-- สร้างป้ายกำกับสำหรับฟิลด์ Part No -->
+            <label htmlFor="partno">Part No:</label>
+            <!--
+            inputId="partno"                    กำหนด ID สำหรับ dropdown ของ Part No
+            [autoDisplayFirst]="false"          ไม่ให้แสดงค่าตัวแรกใน dropdown อัตโนมัติ
+            [options]="req_part"                เชื่อมต่อกับข้อมูลตัวเลือกที่ชื่อ req_part
+            [(ngModel)]="part_no"               เชื่อม binding กับตัวแปร part_no เพื่อเก็บค่าที่เลือก
+            [editable]="true"                   กำหนดให้ dropdown สามารถแก้ไขได้
+            optionLabel="OPIST_PartNo"          กำหนดชื่อของตัวเลือกที่จะแสดงใน dropdown
+            panelStyleClass="text-transform:uppercase;" กำหนดสไตล์สำหรับ panel ให้ตัวอักษรเป็นตัวพิมพ์ใหญ่
+            (onChange)="Post_process($event)"   เรียกใช้งานฟังก์ชัน Post_process เมื่อมีการเปลี่ยนแปลงค่า
+            formControlName="partno"            เชื่อมต่อกับฟอร์มคอนโทรลที่ชื่อ partno
+            -->
+            <!-- can search -->
+            <p-dropdown
+            inputId="partno"
+            [options]="req_part"
+            [(ngModel)]="part_no"
+            [editable]="true"
+            optionLabel="OPIST_PartNo"
+            [filter]="true"
+            filterBy="OPIST_PartNo"
+            [showClear]="true"
+            placeholder="Select a Part"
+            panelStyleClass="text-transform:uppercase;"
+            (onChange)="Post_process($event)"
+            formControlName="partno">
+          </p-dropdown>
+
+          </div>
+<!-- เริ่มฟิลด์ที่เป็นคอลัมน์สำหรับ Process -->
+          <div class="field col">
+            <!-- สร้างป้ายกำกับสำหรับฟิลด์ Process -->
+            <label htmlFor="process">Process:</label>
+            <!--
+            inputId="process"                    กำหนด ID สำหรับ dropdown ของ Process
+            [autoDisplayFirst]="false"          ไม่ให้แสดงค่าตัวแรกใน dropdown อัตโนมัติ
+            [options]="req_process"              เชื่อมต่อกับข้อมูลตัวเลือกที่ชื่อ req_process
+            [(ngModel)]="process_"               เชื่อม binding กับตัวแปร process_ เพื่อเก็บค่าที่เลือก
+            [editable]="true"                    กำหนดให้ dropdown สามารถแก้ไขได้
+            optionLabel="OPIST_Process"          กำหนดชื่อของตัวเลือกที่จะแสดงใน dropdown
+            (onChange)="Post_machine_type($event)" เรียกใช้งานฟังก์ชัน Post_machine_type เมื่อมีการเปลี่ยนแปลงค่า
+            formControlName="process"            เชื่อมต่อกับฟอร์มคอนโทรลที่ชื่อ process
+            -->
+            <p-dropdown
+              inputId="process"
+              [autoDisplayFirst]="false"
+              [options]="req_process"
+              [(ngModel)]="process_"
+              [editable]="true"
+              optionLabel="OPIST_Process"
+              (onChange)="Post_machine_type($event)"
+              formControlName="process"
+            >
+            </p-dropdown>
+          </div>
+
+          <!-- เริ่มฟิลด์ที่เป็นคอลัมน์สำหรับ Rev(Drawing) -->
+          <div class="field col">
+            <!-- สร้างป้ายกำกับสำหรับฟิลด์ Rev(Drawing) -->
+            <label htmlFor="rev">Rev(Drawing):</label>
+            <!--
+            pInputText                           ใช้ input ของ PrimeNG
+            type="text"                          กำหนดประเภทของ input เป็น text
+            inputId="rev"                        กำหนด ID สำหรับ input ของ Rev
+            [(ngModel)]="rev_"                   เชื่อม binding กับตัวแปร rev_ เพื่อเก็บค่าที่ป้อน
+            class="p-inputtext"                  กำหนดคลาสสไตล์ของ input
+            style="text-transform: uppercase; font-family: Arial" กำหนดสไตล์เพิ่มเติมให้กับ input
+            [ngModelOptions]="{ standalone: true }" กำหนดให้ ngModel ไม่ผูกกับฟอร์ม
+            -->
+            <input
+              pInputText
+              type="text"
+              inputId="rev"
+              [(ngModel)]="rev_"
+              class="p-inputtext"
+              style="text-transform: uppercase; font-family: Arial"
+              [ngModelOptions]="{ standalone: true }"
+            />
+          </div>
+
+          <!-- เริ่มฟิลด์ที่เป็นคอลัมน์สำหรับ Machine Type -->
+          <div class="field col">
+            <!-- สร้างป้ายกำกับสำหรับฟิลด์ Machine Type -->
+            <label htmlFor="process">Machine Type:</label>
+            <!--
+            inputId="mc_type"                    กำหนด ID สำหรับ dropdown ของ Machine Type
+            [autoDisplayFirst]="false"          ไม่ให้แสดงค่าตัวแรกใน dropdown อัตโนมัติ
+            [options]="req_mc"                  เชื่อมต่อกับข้อมูลตัวเลือกที่ชื่อ req_mc
+            [(ngModel)]="machineGroup"          เชื่อม binding กับตัวแปร machineGroup เพื่อเก็บค่าที่เลือก
+            [editable]="true"                    กำหนดให้ dropdown สามารถแก้ไขได้
+            optionLabel="OPIST_MC"              กำหนดชื่อของตัวเลือกที่จะแสดงใน dropdown
+            panelStyleClass="text-transform:uppercase;" กำหนดสไตล์สำหรับ panel ให้ตัวอักษรเป็นตัวพิมพ์ใหญ่
+            formControlName="mc_type"            เชื่อมต่อกับฟอร์มคอนโทรลที่ชื่อ mc_type
+            -->
+            <p-dropdown
+              inputId="mc_type"
+              [autoDisplayFirst]="false"
+              [options]="req_mc"
+              [(ngModel)]="machineGroup"
+              [editable]="true"
+              optionLabel="OPIST_MC"
+              panelStyleClass="text-transform:uppercase;"
+              formControlName="mc_type"
+            >
+            </p-dropdown>
+          </div>
+        </div>
+        <!-- สร้างคอนเทนเนอร์สำหรับปุ่มในรูปแบบ grid -->
+        <div class="container p-grid p-justify-start gap-8">
+          <!-- คอลัมน์สำหรับปุ่ม Setup -->
+          <div class="p-col-4">
+            <!--
+            pButton                              ใช้ปุ่มของ PrimeNG
+            pRipple                              ใช้เอฟเฟกต์ ripple เมื่อคลิก
+            label="Setup"                       กำหนดป้ายกำกับของปุ่ม
+            class="by-me-1"                     กำหนดคลาสสำหรับสไตล์ของปุ่ม
+            icon="pi pi-plus"                   กำหนดไอคอนสำหรับปุ่ม
+            (click)="Setup()"                   เรียกใช้งานฟังก์ชัน Setup เมื่อคลิกปุ่ม
+            -->
+            <button
+              pButton
+              pRipple
+              label="Setup"
+              class="by-me-1"
+              icon="pi pi-plus"
+              (click)="Setup()"
+            ></button>
+          </div>
+
+          <!-- คอลัมน์สำหรับปุ่ม Daily -->
+          <div class="p-col-4">
+            <!--
+            pButton                              ใช้ปุ่มของ PrimeNG
+            pRipple                              ใช้เอฟเฟกต์ ripple เมื่อคลิก
+            label="Daily"                       กำหนดป้ายกำกับของปุ่ม
+            class="by-me-2"                     กำหนดคลาสสำหรับสไตล์ของปุ่ม
+            icon="pi pi-plus"                   กำหนดไอคอนสำหรับปุ่ม
+            (click)="Daily()"                   เรียกใช้งานฟังก์ชัน Daily เมื่อคลิกปุ่ม
+            -->
+            <!-- เปลี่ยนจาก Daily เป็น Other เปลี่ยนแค่label -->
+            <button
+              pButton
+              pRipple
+              label="Other"
+              class="by-me-2"
+              icon="pi pi-plus"
+              (click)="Daily()"
+            ></button>
+          </div>
+
+          <!-- คอลัมน์สำหรับปุ่ม Clear -->
+          <div class="p-col-4">
+            <!--
+            pButton                              ใช้ปุ่มของ PrimeNG
+            pRipple                              ใช้เอฟเฟกต์ ripple เมื่อคลิก
+            label="Clear"                       กำหนดป้ายกำกับของปุ่ม
+            class="by-me-3"                     กำหนดคลาสสำหรับสไตล์ของปุ่ม
+            icon="pi pi-times"                  กำหนดไอคอนสำหรับปุ่ม
+            (click)="cleardata()"               เรียกใช้งานฟังก์ชัน cleardata เมื่อคลิกปุ่ม
+            -->
+            <button
+              pButton
+              pRipple
+              label="{{ 'CLEAR' | translate }}"
+              class="by-me-3"
+              icon="pi pi-times"
+              (click)="cleardata()"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- End formGroup  -->
+
+  <!-- ถ้าไม่มี table ส่งมาจาก Reqtool_insert จะโชว์ table item no -->
+  <div style="margin-top: -1rem" *ngIf="items.length > 0">
+    <!-- start table  -->
+    <!--
+    [value]="items"                     กำหนดค่าให้กับตารางจากตัวแปร items
+    styleClass="p-datatable-striped p-datatable-gridlines" กำหนดสไตล์ให้กับตาราง
+    dataKey="Item_no"                   กำหนด key  ที่ใช้ในการระบุข้อมูลแต่ละแถว
+    -->
+    <p-table
+      #dt1
+      [value]="items"
+      styleClass="p-datatable-striped p-datatable-gridlines"
+      dataKey="Item_no"
+    >
+      <!--  Start header table  -->
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 10%; text-align: center">Item no.</th> <!-- คอลัมน์สำหรับ Item no -->
+          <th style="width: 10%; text-align: center">Part no.</th> <!-- คอลัมน์สำหรับ Part no. -->
+          <th style="width: 5%; text-align: center">Process</th> <!-- คอลัมน์สำหรับ Process -->
+          <th style="width: 5%; text-align: center">MC type</th> <!-- คอลัมน์สำหรับ MC type -->
+          <th style="width: 10%; text-align: center">Spec</th> <!-- คอลัมน์สำหรับ Spec -->
+          <th style="width: 5%; text-align: center">Usage</th> <!-- คอลัมน์สำหรับ Usage ทั้งหมดที่ Item นี้สามารถทำการตัดได้ -->
+          <th style="width: 5%; text-align: center">MC no.</th> <!-- คอลัมน์สำหรับ MC no. -->
+          <th style="width: 5%; text-align: center">Qty</th> <!-- คอลัมน์สำหรับ Qty -->
+          <th style="width: 10%; text-align: center">Case</th> <!-- คอลัมน์สำหรับ Case -->
+
+          <!-- หากอยู่ในโหมด Daily -->
+          <th *ngIf="isDaily" style="width: 5%; text-align: center">Result1</th> <!-- คอลัมน์สำหรับมุมที่ 1 -->
+          <th *ngIf="isDaily" style="width: 5%; text-align: center">Result2</th> <!-- คอลัมน์สำหรับมุมที่ 2 -->
+          <th *ngIf="isDaily" style="width: 5%; text-align: center">Result3</th> <!-- คอลัมน์สำหรับมุมที่ 3 -->
+          <th *ngIf="isDaily" style="width: 5%; text-align: center">Result4</th> <!-- คอลัมน์สำหรับมุมที่ 4 -->
+          <th *ngIf="isDaily" style="width: 5%; text-align: center">Result5</th> <!-- คอลัมน์สำหรับมุมที่ 5 -->
+          <th *ngIf="isDaily" style="width: 5%; text-align: center">Result6</th> <!-- คอลัมน์สำหรับมุมที่ 6 -->
+
+          <th>Tel</th> <!-- คอลัมน์สำหรับ phone -->
+        </tr>
+      </ng-template>
+      <!--  End header table  -->
+
+      <!--  Start body table  -->
+      <ng-template
+        pTemplate="body"
+        let-items
+        let-editing="editing"
+        let-ri="rowIndex"
+      >
+        <!-- <tr *ngIf="isSetup || isDaily"> -->
+        <tr>
+          <td style="text-align: center">{{ items.ITEM_NO }}</td> <!-- แสดง ITEM_NO -->
+          <td style="text-align: center">{{ items.OPIST_PartNo }}</td> <!-- แสดง PartNo -->
+          <td style="text-align: center">{{ items.OPIST_Process }}</td> <!-- แสดง Process -->
+          <td style="text-align: center">{{ items.OPIST_MC }}</td> <!-- แสดง MC type -->
+          <td style="text-align: center">{{ items.SPEC }}</td> <!-- แสดง SPEC -->
+          <td style="text-align: center">{{ items.OPIST_Usage_pcs }}</td> <!-- แสดง Usage -->
+
+          <!-- สร้าง input สำหรับ MC_no -->
+          <td>
+
+            <input
+              type="text"
+              style="text-align: center"
+              [(ngModel)]="items.MC_no"
+              class="input-element"
+            />
+          </td>
+
+          <!-- สร้าง input สำหรับ Qty -->
+          <td>
+            <input
+              type="text"
+              style="text-align: center"
+              [(ngModel)]="items.Qty"
+              class="input-element"
+            />
+          </td>
+          <td style="text-align: center">
+            <!-- แสดง Case ของ Set up  -->
+            <span *ngIf="!isDaily">{{ Set_Case }}</span>
+            <!-- แสดง Case ของ Daily  -->
+            <p-dropdown
+              *ngIf="isDaily"
+              [options]="AllCase_"
+              [(ngModel)]="items.selectedCase"
+              optionLabel="viewCase"
+            ></p-dropdown>
+          </td>
+
+          <!-- หากอยู่ในโหมด Daily -->
+          <!-- แสดง input สำหรับมุมที่ 1 -->
+          <td *ngIf="isDaily">
+            <input
+              type="text"
+              style="text-align: center"
+              [(ngModel)]="items.Result1"
+              class="input-element"
+            />
+          </td>
+          <!-- แสดง input สำหรับมุมที่ 2 -->
+          <td *ngIf="isDaily">
+            <input
+              type="text"
+              style="text-align: center"
+              [(ngModel)]="items.Result2"
+              class="input-element"
+            />
+          </td>
+          <!-- แสดง input สำหรับมุมที่ 3 -->
+          <td *ngIf="isDaily">
+            <input
+              type="text"
+              style="text-align: center"
+              [(ngModel)]="items.Result3"
+              class="input-element"
+            />
+          </td>
+          <!-- แสดง input สำหรับมุมที่ 4 -->
+          <td *ngIf="isDaily">
+            <input
+              type="text"
+              style="text-align: center"
+              [(ngModel)]="items.Result4"
+              class="input-element"
+            />
+          </td>
+          <!-- แสดง input สำหรับมุมที่ 5 -->
+          <td *ngIf="isDaily">
+            <input
+              type="text"
+              style="text-align: center"
+              [(ngModel)]="items.Result5"
+              class="input-element"
+            />
+          </td>
+          <!-- แสดง input สำหรับมุมที่ 6 -->
+          <td *ngIf="isDaily">
+            <input
+              type="text"
+              style="text-align: center"
+              [(ngModel)]="items.Result6"
+              class="input-element"
+            />
+          </td>
+
+           <!-- คอลัมน์ Phone พร้อม Input -->
+          <td style="text-align: center">
+            <input
+              pInputText
+              type="text"
+              class="p-inputtext"
+              style="width: 90%;"
+              placeholder="Enter phone number"
+            />
+          </td>
+
+        </tr>
+      </ng-template>
+      <!--  End body table  -->
+    </p-table>
+    <!-- End table  -->
+
+    <!-- เส้นหน้า -->
+    <hr
+      style="height: 2px; border-width: 0; color: #4caf50; background-color: #4caf50"
+    />
+    <!-- เลือก iten no เพื่อไปทำ array ใหม่ -->
+    <div class="flex align-items-right gap-2" *ngIf="isDaily">
+      <!-- ปุ่มสำหรับเพิ่มข้อมูลลงในตะกร้า -->
+      <p-button
+        icon="pi pi-check"
+        label="Add to Cart"
+        styleClass="p-button-text"
+        (click)="saveSelectedRows_Daily()"
+      > <!-- ฟังก์ชันที่เรียกเมื่อคลิก -->
+      </p-button>
+    </div>
+    <div class="flex align-items-right gap-2" *ngIf="!isDaily">
+      <!-- ปุ่มสำหรับเพิ่มข้อมูลลงในตะกร้า -->
+      <p-button
+        icon="pi pi-check"
+        label="Add to Cart"
+        styleClass="p-button-text"
+        (click)="saveSelectedRows_Setup()"
+      ><!-- ฟังก์ชันที่เรียกเมื่อคลิก -->
+      </p-button>
+    </div>
+  </div>
+</p-card>
+<!-- End request tool block -->

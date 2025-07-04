@@ -1,0 +1,212 @@
+<p-card *ngIf="currentUser?.Emp_Code" class="material-request-card">
+  <!-- ส่วนหัวของการ์ด -->
+  <h3 class="text-center  mb-0">SETUP REQUEST</h3>
+  <div class="flex" style="margin-top: -2rem">
+    <div class="flex-1"></div>
+    <div class="flex align-items-left gap-2">
+      <div class="flex align-items-center">
+        <label htmlFor="div">Div :</label>
+        <p-dropdown
+          inputId="div"
+          [autoDisplayFirst]="false"
+          [options]="Div"
+          [(ngModel)]="div_"
+          optionLabel="label"
+        ></p-dropdown>
+      </div>
+      <div class="flex align-items-center">
+        <label htmlFor="fac">Fac :</label>
+        <p-dropdown
+          inputId="fac"
+          [autoDisplayFirst]="false"
+          [options]="Fac"
+          [(ngModel)]="fac_"
+          optionLabel="label"
+        ></p-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <!-- เส้นแบ่งส่วน -->
+  <hr
+    style="height: 2px; border-width: 0; color: #4caf50; background-color: #4caf50"
+  />
+
+  <!-- ส่วนฟอร์มสำหรับกรอกข้อมูล -->
+  <div class="grid p-fluid p-4">
+    <!-- ฟิลด์สำหรับ Part No -->
+    <div class="field col-3">
+      <label for="partno">Part No:</label>
+      <p-dropdown
+        inputId="partno"
+        [options]="req_part"
+        [(ngModel)]="part_no"
+        [editable]="true"
+        optionLabel="OPIST_PartNo"
+        [filter]="true"
+        filterBy="OPIST_PartNo"
+        [showClear]="true"
+        placeholder="Select a Part"
+        panelStyleClass="text-transform:uppercase;"
+      ></p-dropdown>
+    </div>
+
+    <!-- ฟิลด์สำหรับ Process -->
+    <div class="field col-3">
+      <label for="process">Process:</label>
+      <p-dropdown
+        inputId="process"
+        [options]="req_process"
+        [(ngModel)]="process_"
+        optionLabel="OPIST_Process"
+        [editable]="true"
+        placeholder="Select Process"
+      ></p-dropdown>
+    </div>
+
+    <!-- ฟิลด์สำหรับ Rev(Drawing) -->
+    <div class="field col-3">
+      <label for="rev">Rev(Drawing):</label>
+      <input
+        pInputText
+        type="text"
+        inputId="rev"
+        [(ngModel)]="rev_"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial"
+        placeholder="Enter Revision"
+      />
+    </div>
+
+    <!-- ฟิลด์สำหรับ Machine Type -->
+    <div class="field col-3">
+      <label for="mc_type">Machine Type:</label>
+      <p-dropdown
+        inputId="mc_type"
+        [options]="req_mc"
+        [(ngModel)]="machineGroup"
+        optionLabel="OPIST_MC"
+        placeholder="Select Machine Type"
+      ></p-dropdown>
+    </div>
+  </div>
+
+
+  <!-- Buttons -->
+  <div class="button-container p-grid p-justify-start gap-8">
+    <!-- ปุ่ม Setup -->
+    <button
+      pButton
+      pRipple
+      label="Setup"
+      class="button setup-button p-col-4"
+      icon="pi pi-plus"
+      (click)="showSetup()"
+    ></button>
+
+    <!-- ปุ่ม Other -->
+    <button
+      pButton
+      pRipple
+      label="Other"
+      class="button other-button p-col-4"
+      icon="pi pi-plus"
+      (click)="showOther()"
+    ></button>
+
+    <!-- ปุ่ม Clear -->
+    <button
+      pButton
+      pRipple
+      label="Clear"
+      class="button clear-button p-col-4"
+      icon="pi pi-times"
+      (click)="cleardata()"
+    ></button>
+  </div>
+
+  <!-- ตาราง -->
+  <div *ngIf="showTable" class="table-container">
+    <p-table [value]="filteredItems" [responsive]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Item No.</th>
+          <th>Part No.</th>
+          <th>Process</th>
+          <th>MC Type</th>
+          <th>Spec</th>
+
+          <th>MC No.</th>
+          <th>Qty</th>
+          <th>Case</th>
+          <th>Tel</th> <!-- คอลัมน์สำหรับ phone -->
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{ item.ITEM_NO }}</td>
+          <td>{{ item.OPIST_PartNo }}</td>
+          <td>{{ item.OPIST_Process }}</td>
+          <td>{{ item.OPIST_MC }}</td>
+          <td>{{ item.SPEC }}</td>
+
+          <td>
+            <input type="text" [(ngModel)]="item.MC_no" />
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="item.Qty" />
+          </td>
+          <td>
+            <!-- แสดงค่า Setup เป็นข้อความ -->
+            <span *ngIf="item.isCaseLocked">Setup</span>
+            <!-- แสดง Dropdown เฉพาะกรณีที่ไม่ได้ล็อค -->
+            <p-dropdown
+              *ngIf="!item.isCaseLocked"
+              [options]="cases"
+              [(ngModel)]="item.selectedCase"
+              appendTo="body">
+            </p-dropdown>
+          </td>
+
+          <!-- คอลัมน์ Phone พร้อม Input -->
+          <td style="text-align: center">
+            <input
+              pInputText
+              type="text"
+              class="p-inputtext"
+              style="width: 90%;"
+              placeholder="Enter phone number"
+            />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <br>
+    <div class="form-group">
+      <label>
+        <input type="checkbox" [(ngModel)]="wantSetupTool" />
+        Do you want Setup tool?
+      </label>
+    </div>
+
+
+    <!-- เส้นหน้า -->
+    <hr
+      style="height: 2px; border-width: 0; color: #4caf50; background-color: #4caf50"/>
+
+    <!-- ปุ่ม Add to Cart -->
+    <div class="flex align-items-right gap-2">
+      <!-- ปุ่ม Add to Cart -->
+      <p-button
+        icon="pi pi-check"
+        label="Add to Cart"
+        styleClass="p-button-text"
+        (click)="addToCartPopup()"
+
+      >
+      </p-button>
+    </div>
+  </div>
+
+</p-card>
+

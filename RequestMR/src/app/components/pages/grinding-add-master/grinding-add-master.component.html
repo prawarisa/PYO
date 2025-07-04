@@ -1,0 +1,57 @@
+<div class="form-container">
+  <h3>Add Master</h3>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label>Item No:</label>
+      <input type="text" [(ngModel)]="formData.itemNo" name="itemNo" required />
+    </div>
+    <div>
+      <label>Part No:</label>
+      <input type="text" [(ngModel)]="formData.partNo" name="partNo" />
+    </div>
+    <div>
+      <label>Process:</label>
+      <input type="text" [(ngModel)]="formData.process" name="process" />
+    </div>
+    <div>
+      <label>Mc Name:</label>
+      <input type="text" [(ngModel)]="formData.mcName" name="mcName" />
+    </div>
+    <div>
+      <label>Mc Type:</label>
+      <input type="text" [(ngModel)]="formData.mcType" name="mcType" />
+    </div>
+    <div>
+      <label>Spec:</label>
+      <input type="text" [(ngModel)]="formData.spec" name="spec" />
+    </div>
+    <div>
+      <label>Usage:</label>
+      <input type="text" [(ngModel)]="formData.usage" name="usage" />
+    </div>
+    <label>Rev (Drawing):</label>
+    <div class="file-upload-container">
+      <label for="file-upload" class="custom-file-upload">
+        <i class="pi pi-upload"></i> Upload File
+      </label>
+      <input id="file-upload" type="file" (change)="onFileSelected($event)" />
+      <span class="file-name">{{ selectedFile?.name || 'No file chosen' }}</span>
+    </div>
+
+
+    <div>
+      <label>Remark:</label>
+      <textarea [(ngModel)]="formData.remark" name="remark"></textarea>
+    </div>
+
+   <!-- button -->
+    <div class="button-container">
+      <button type="button" class="btn-save" (click)="onSubmit()">
+        <i class="pi pi-save"></i> Save
+      </button>
+      <button type="button" class="btn-back" (click)="onBack()">
+        <i class="pi pi-arrow-left"></i> Back
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,53 @@
+.detail-container {
+  margin: 20px;
+}
+
+.header-info {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.date-info {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.problem-section {
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+}
+
+.button-section {
+  text-align: right;
+
+}
+.btn-back {
+  background-color: #ffca28;
+  color: black;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #ffb300;
+    cursor: pointer;
+  }
+}

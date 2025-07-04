@@ -1,0 +1,50 @@
+::ng-deep { /* ใช้ ::ng-deep เพื่อให้ CSS มีผลต่อส่วนที่อยู่ใน Shadow DOM */
+  .SetComplete { /* กำหนดสไตล์สำหรับคลาส SetComplete */
+    background-color: rgb(43, 179, 95); /* ตั้งค่าสีพื้นหลังเป็นสีเขียว */
+    color: white; /* ตั้งค่าสีข้อความเป็นสีขาว */
+    padding: 4px 8px; /* กำหนด padding ด้านบน-ล่างเป็น 4px และด้านซ้าย-ขวาเป็น 8px */
+    text-align: center; /* จัดตำแหน่งข้อความให้อยู่กลาง */
+    border-radius: 5px; /* กำหนดความโค้งมนของมุมเป็น 5px */
+    font-size: medium; /* กำหนดขนาดฟอนต์เป็น medium */
+  }
+
+  .Waiting { /* กำหนดสไตล์สำหรับคลาส Waiting */
+    background-color: rgb(207, 209, 104); /* ตั้งค่าสีพื้นหลังเป็นสีเหลือง */
+    color: white; /* ตั้งค่าสีข้อความเป็นสีขาว */
+    padding: 4px 8px; /* กำหนด padding ด้านบน-ล่างเป็น 4px และด้านซ้าย-ขวาเป็น 8px */
+    text-align: center; /* จัดตำแหน่งข้อความให้อยู่กลาง */
+    border-radius: 5px; /* กำหนดความโค้งมนของมุมเป็น 5px */
+    font-size: medium; /* กำหนดขนาดฟอนต์เป็น medium */
+  }
+
+  .Setting { /* กำหนดสไตล์สำหรับคลาส Setting */
+    background-color: rgb(104, 206, 209); /* ตั้งค่าสีพื้นหลังเป็นสีฟ้า */
+    color: white; /* ตั้งค่าสีข้อความเป็นสีขาว */
+    padding: 4px 8px; /* กำหนด padding ด้านบน-ล่างเป็น 4px และด้านซ้าย-ขวาเป็น 8px */
+    text-align: center; /* จัดตำแหน่งข้อความให้อยู่กลาง */
+    border-radius: 5px; /* กำหนดความโค้งมนของมุมเป็น 5px */
+    font-size: medium; /* กำหนดขนาดฟอนต์เป็น medium */
+  }
+
+  .Draft { /* กำหนดสไตล์สำหรับคลาส Draft */
+    background-color: rgb(153, 233, 184); /* ตั้งค่าสีพื้นหลังเป็นสีเขียวอ่อน */
+    color: white; /* ตั้งค่าสีข้อความเป็นสีขาว */
+    padding: 4px 8px; /* กำหนด padding ด้านบน-ล่างเป็น 4px และด้านซ้าย-ขวาเป็น 8px */
+    text-align: center; /* จัดตำแหน่งข้อความให้อยู่กลาง */
+    border-radius: 5px; /* กำหนดความโค้งมนของมุมเป็น 5px */
+    font-size: medium; /* กำหนดขนาดฟอนต์เป็น medium */
+  }
+
+  .Issue { /* กำหนดสไตล์สำหรับคลาส Issue */
+    background-color: rgb(43, 179, 95); /* ตั้งค่าสีพื้นหลังเป็นสีเขียว */
+    color: white; /* ตั้งค่าสีข้อความเป็นสีขาว */
+    padding: 4px 8px; /* กำหนด padding ด้านบน-ล่างเป็น 4px และด้านซ้าย-ขวาเป็น 8px */
+    text-align: center; /* จัดตำแหน่งข้อความให้อยู่กลาง */
+    border-radius: 5px; /* กำหนดความโค้งมนของมุมเป็น 5px */
+    font-size: medium; /* กำหนดขนาดฟอนต์เป็น medium */
+  }
+
+  .Active { /* กำหนดสไตล์สำหรับคลาส Active */
+    color: red; /* ตั้งค่าสีข้อความเป็นสีแดง */
+  }
+}

@@ -1,0 +1,64 @@
+.receive-container {
+  padding: 20px;
+
+  h2 {
+    color: #333;
+  }
+
+  .table-container {
+    margin-top: 20px;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+
+      th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+      }
+
+      th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+      }
+
+      td {
+        color: #333;
+      }
+
+      .detail-btn {
+        background-color: #5a67d8;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        i {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .pagination {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+
+      button {
+        background-color: #5a67d8;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+
+        &:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,226 @@
+<div *ngIf="items.length > 0">
+  <!-- ตรวจสอบว่ามี items อย่างน้อยหนึ่งรายการก่อนที่จะแสดงเนื้อหา -->
+  <p-card>
+    <div class="flex align-items-center gap-2">
+      <!-- ใช้ flexbox เพื่อจัดเรียง input fields และ label -->
+      <!-- Input fields -->
+      <!-- ป้ายชื่อสำหรับฟิลด์ Doc_no -->
+      <!-- ฟิลด์ป้อนข้อมูลสำหรับ Doc_no -->
+      <!-- ใช้ pInputText จาก PrimeNG -->
+      <!-- ประเภทฟิลด์คือข้อความ -->
+      <!-- ตั้งค่า id สำหรับฟิลด์ -->
+      <!-- สร้าง Two-way binding กับ Doc_no ของ item แรกใน items -->
+      <!-- กำหนดคลาสสำหรับ input -->
+      <!-- เปลี่ยนข้อความเป็นตัวพิมพ์ใหญ่และกำหนดฟอนต์ -->
+      <!-- ทำให้ ngModel ทำงานอิสระไม่ขึ้นกับฟอร์ม -->
+      <label for="doc_no">Doc_no: </label>
+      <input
+        pInputText
+        type="text"
+        id="doc_no"
+        [(ngModel)]="items[0].Doc_no"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <!-- ป้ายชื่อสำหรับฟิลด์ Division -->
+      <!-- ฟิลด์ป้อนข้อมูลสำหรับ Division -->
+      <!-- ใช้ pInputText จาก PrimeNG -->
+      <!-- ประเภทฟิลด์คือข้อความ -->
+      <!-- ตั้งค่า id สำหรับฟิลด์ -->
+      <!-- สร้าง Two-way binding กับ Division ของ item แรกใน items -->
+      <!-- กำหนดคลาสสำหรับ input -->
+      <!-- เปลี่ยนข้อความเป็นตัวพิมพ์ใหญ่และกำหนดฟอนต์ -->
+      <!-- ทำให้ ngModel ทำงานอิสระไม่ขึ้นกับฟอร์ม -->
+      <label for="division">Division: </label>
+      <input
+        pInputText
+        type="text"
+        id="division"
+        [(ngModel)]="items[0].Division"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial; width: 50px;"
+        [ngModelOptions]="{ standalone: true }"
+      />
+
+      <label for="factory">Factory: </label>
+      <!-- ป้ายชื่อสำหรับฟิลด์ Factory -->
+      <!-- ฟิลด์ป้อนข้อมูลสำหรับ Factory -->
+      <!-- ใช้ pInputText จาก PrimeNG -->
+      <!-- ประเภทฟิลด์คือข้อความ -->
+      <!-- ตั้งค่า id สำหรับฟิลด์ -->
+      <!-- สร้าง Two-way binding กับ Factory ของ item แรกใน items -->
+      <!-- กำหนดคลาสสำหรับ input -->
+      <!-- เปลี่ยนข้อความเป็นตัวพิมพ์ใหญ่และกำหนดฟอนต์ -->
+      <!-- ทำให้ ngModel ทำงานอิสระไม่ขึ้นกับฟอร์ม -->
+      <input
+        pInputText
+        type="text"
+        id="factory"
+        [(ngModel)]="items[0].Factory"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial; width: 30px;"
+        [ngModelOptions]="{ standalone: true }"
+      />
+
+      <label for="process">Process: </label>
+      <!-- ป้ายชื่อสำหรับฟิลด์ Process -->
+      <!-- ฟิลด์ป้อนข้อมูลสำหรับ Process -->
+      <!-- ใช้ pInputText จาก PrimeNG -->
+      <!-- ประเภทฟิลด์คือข้อความ -->
+      <!-- ตั้งค่า id สำหรับฟิลด์ -->
+      <!-- สร้าง Two-way binding กับ Process ของ item แรกใน items -->
+      <!-- กำหนดคลาสสำหรับ input -->
+      <!-- เปลี่ยนข้อความเป็นตัวพิมพ์ใหญ่และกำหนดฟอนต์ -->
+      <!-- ทำให้ ngModel ทำงานอิสระไม่ขึ้นกับฟอร์ม -->
+      <input
+        pInputText
+        type="text"
+        id="process"
+        [(ngModel)]="items[0].Process"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial"
+        [ngModelOptions]="{ standalone: true }"
+      />
+
+      <label for="date_of_req">Date of Req: </label>
+      <!-- ป้ายชื่อสำหรับฟิลด์ Date of Req -->
+
+      <!-- ฟิลด์ป้อนข้อมูลสำหรับ Date of Req -->
+      <!-- ใช้ pInputText จาก PrimeNG -->
+      <!-- ประเภทฟิลด์คือข้อความ -->
+      <!-- สร้าง Two-way binding กับ formattedDate -->
+      <!-- กำหนดคลาสสำหรับ input -->
+      <!-- เปลี่ยนข้อความเป็นตัวพิมพ์ใหญ่และกำหนดฟอนต์ -->
+      <!-- ทำให้ ngModel ทำงานอิสระไม่ขึ้นกับฟอร์ม -->
+      <input
+        pInputText
+        type="text"
+        [(ngModel)]="formattedDate"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <div class="flex-1"></div>
+      <div class="flex align-items-left gap-2" *ngIf="currentUser.role === 'admin'">
+        <button
+          pButton
+          icon="pi pi-download"
+          class="p-button-warning"
+          (click)="exportExcel()"
+          [disabled]="items.length === 0"
+        >
+          Export Excel
+        </button>
+      </div>
+    </div>
+
+    <!-- สิ้นสุดการจัดเรียง input fields -->
+
+    <br />
+
+    <br />
+    <p-table
+      #dt1
+      [value]="items"
+      styleClass="p-datatable-striped p-datatable-gridlines"
+    >
+      <ng-template pTemplate="header">
+        <!-- ใช้ ng-template เพื่อกำหนดส่วนหัวของตาราง -->
+        <tr>
+          <!-- เริ่มต้นแถวในส่วนหัว -->
+          <th style="width: 5%; text-align: center">Doc no.</th>
+          <th style="width: 5%; text-align: center">Division</th>
+          <th style="width: 5%; text-align: center">Factory</th>
+          <th style="width: 5%; text-align: center">Date</th>
+          <th style="width: 5%; text-align: center">Time</th>
+          <!-- คอลัมน์สำหรับหมายเลข -->
+          <th style="width: 5%; text-align: center">Item no.</th>
+          <!-- คอลัมน์สำหรับหมายเลขรายการ -->
+          <th style="width: 5%; text-align: center">Part no.</th>
+          <th style="width: 5%; text-align: center">Revision</th>
+          <th style="width: 5%; text-align: center">Process</th>
+          <!-- คอลัมน์สำหรับหมายเลขชิ้นส่วน -->
+          <th style="width: 5%; text-align: center">MC type</th>
+          <!-- คอลัมน์สำหรับประเภท MC -->
+          <th style="width: 5%; text-align: center">Spec</th>
+          <!-- คอลัมน์สำหรับสเปค -->
+          <th style="width: 5%; text-align: center">Usage</th>
+          <!-- คอลัมน์สำหรับการใช้งาน -->
+          <th style="width: 5%; text-align: center">MC no.</th>
+          <!-- คอลัมน์สำหรับหมายเลข MC -->
+          <th style="width: 5%; text-align: center">Qty</th>
+          <!-- คอลัมน์สำหรับปริมาณ -->
+          <th style="width: 5%; text-align: center">Case</th>
+          <!-- คอลัมน์สำหรับกรณี -->
+          <th style="width: 5%; text-align: center">Result1</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 1 -->
+          <th style="width: 5%; text-align: center">Result2</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 2 -->
+          <th style="width: 5%; text-align: center">Result3</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 3 -->
+          <th style="width: 5%; text-align: center">Result4</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 4 -->
+          <th style="width: 5%; text-align: center">Result5</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 5 -->
+          <th style="width: 5%; text-align: center">Result6</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 6 -->
+          <th style="width: 5%; text-align: center">Status</th>
+          <!-- คอลัมน์สำหรับสถานะ -->
+          <th style="width: 5%; text-align: center">Set by</th>
+          <!-- คอลัมน์สำหรับผู้ตั้งค่า -->
+        </tr>
+        <!-- สิ้นสุดแถวในส่วนหัว -->
+      </ng-template>
+
+      <ng-template
+        pTemplate="body"
+        let-items
+        let-editing="editing"
+        let-ri="rowIndex"
+      >
+        <tr>
+          <td style="text-align: center">{{ items.Doc_no }}</td>
+          <td style="text-align: center">{{ items.Division }}</td>
+          <td style="text-align: center">{{ items.Factory }}</td>
+          <td style="text-align: center">{{ formattedDate }}</td>
+          <td style="text-align: center">{{ formattedTime }}</td>
+          <!-- แสดงหมายเลขของแถว -->
+          <td style="text-align: center">{{ items.Item_no }}</td>
+          <!-- แสดงหมายเลขรายการ -->
+          <td style="text-align: center">{{ items.Part_no }}</td>
+          <td style="text-align: center">{{ items.Revision }}</td>
+          <td style="text-align: center">{{ items.Process }}</td>
+          <!-- แสดงหมายเลขชิ้นส่วน -->
+          <td style="text-align: center">{{ items.MC_type }}</td>
+          <!-- แสดงประเภท MC -->
+          <td style="text-align: center">{{ items.Spec }}</td>
+          <!-- แสดงสเปค -->
+          <td style="text-align: center">{{ items.Usage }}</td>
+          <!-- แสดงการใช้งาน -->
+          <td style="text-align: center">{{ items.MC_no }}</td>
+          <!-- แสดงหมายเลข MC -->
+          <td style="text-align: center">{{ items.Qty }}</td>
+          <!-- แสดงปริมาณ -->
+          <td style="text-align: center">{{ items.Case_ }}</td>
+          <!-- แสดงกรณี -->
+          <td style="text-align: center">{{ items.Result1 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 1 -->
+          <td style="text-align: center">{{ items.Result2 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 2 -->
+          <td style="text-align: center">{{ items.Result3 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 3 -->
+          <td style="text-align: center">{{ items.Result4 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 4 -->
+          <td style="text-align: center">{{ items.Result5 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 5 -->
+          <td style="text-align: center">{{ items.Result6 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 6 -->
+          <td style="text-align: center">{{ items.Status }}</td>
+          <!-- แสดงสถานะ -->
+          <td style="text-align: center">{{ items.Set_by }}</td>
+        </tr></ng-template
+      >
+    </p-table>
+  </p-card>
+</div>

@@ -1,0 +1,70 @@
+<p-card>
+  <div class="detail-container">
+    <!-- ฟอร์มสำหรับกรอกข้อมูล -->
+    <div class="form-header">
+      <label>Doc no:</label>
+      <input type="text" placeholder="Enter Doc no" [(ngModel)]="docData.docNo" />
+
+      <label>Division:</label>
+      <input type="text" placeholder="Enter Division" [(ngModel)]="docData.division" />
+
+      <label>Factory:</label>
+      <input type="text" placeholder="Enter Factory" [(ngModel)]="docData.factory" />
+
+      <label>Process:</label>
+      <input type="text" placeholder="Enter Process" [(ngModel)]="docData.process" />
+
+      <label>Date of Req:</label>
+      <input type="date" [(ngModel)]="docData.dateOfReq" />
+    </div>
+
+    <!-- ตารางข้อมูล -->
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Item no</th>
+          <th>Part no</th>
+          <th>MC type</th>
+          <th>Spec</th>
+          <th>MC no</th>
+          <th>Qty</th>
+          <th>Case</th>
+          <th>Rev(Drawing)</th>
+          <th>Status</th>
+          <th>Sent by</th>
+          <th>Accept</th>
+          <th>Receive</th>
+          <th>Return</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of tableData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.itemNo }}</td>
+          <td>{{ item.partNo }}</td>
+          <td>{{ item.mcType }}</td>
+          <td>{{ item.spec }}</td>
+          <td>{{ item.mcNo }}</td>
+          <td>{{ item.qty }}</td>
+          <td>{{ item.case }}</td>
+          <td>{{ item.rev }}</td>
+          <td>{{ item.status }}</td>
+          <td>{{ item.sentBy }}</td>
+          <td>{{ item.accept }}</td>
+          <td>{{ item.receive }}</td>
+          <td style="text-align: center">
+            <button
+              pButton
+              icon="pi pi-refresh"
+              class="p-button-success"
+              (click)="onReturn()"
+            >
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</p-card>

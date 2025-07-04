@@ -1,0 +1,58 @@
+<p-card>
+  <div class="list-request-container">
+    <!-- Title -->
+    <h2 class="text-center">List Request</h2>
+
+    <hr
+    style="height: 2px; border-width: 0; color: #4caf50; background-color: #4caf50"
+  />
+
+    <!-- Table -->
+    <table class="list-request-table">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Doc_no</th>
+          <th>Division</th>
+          <th>Factory</th>
+          <th>Date</th>
+          <th>Process</th>
+          <th>Total Item</th>
+          <th>Status</th>
+          <th>Detail</th>
+          <th>Del</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.docNo }}</td>
+          <td>{{ item.division }}</td>
+          <td>{{ item.factory }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.process }}</td>
+          <td>{{ item.totalItem }}</td>
+          <td>{{ item.status }}</td>
+          <!-- Detail Button -->
+          <td>
+            <button
+              pButton
+              icon="pi pi-eye"
+              class="p-button-rounded p-button-info"
+              (click)="viewDetail(item.docNo)"
+            ></button>
+          </td>
+          <!-- Delete Button -->
+          <td>
+            <button
+              pButton
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-danger"
+              (click)="deleteItem(i)"
+            ></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</p-card>

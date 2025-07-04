@@ -1,0 +1,14 @@
+<div class="layout-wrapper" [ngClass]="containerClass">   <!-- กำหนด class สำหรับ wrapper layout และใช้ ngClass เพื่อกำหนด class ตามตัวแปร containerClass -->
+  <app-topbar></app-topbar>  <!-- เรียกใช้งาน component topbar -->
+  <div class="layout-sidebar">
+    <app-sidebar></app-sidebar>  <!-- เรียกใช้งาน component sidebar -->
+  </div>
+  <div class="layout-main-container">
+    <div class="layout-main">
+      <router-outlet></router-outlet>  <!-- ใช้สำหรับแสดง router views -->
+    </div>
+    <app-footer></app-footer>  <!-- เรียกใช้งาน component footer -->
+  </div>
+  <!-- <app-config></app-config> -->  <!-- (คอมเมนต์ไว้) เรียกใช้งาน component config -->
+  <div class="layout-mask"></div>  <!-- Mask overlay สำหรับปิดกั้นการเข้าถึงเมื่อมีการเปิด sidebar หรือ dialog -->
+</div>

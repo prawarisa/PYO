@@ -1,0 +1,94 @@
+<div *ngIf="items.length > 0">
+  <!-- แสดง div นี้เมื่อรายการมีความยาวมากกว่า 0 -->
+  <p-card>
+    <!-- ใช้ p-card เพื่อสร้างกรอบสำหรับตาราง -->
+    <!-- ใช้ p-table จาก PrimeNG เพื่อแสดงตาราง -->
+    <!-- กำหนดตัวแปร template reference สำหรับตาราง -->
+    <!-- กำหนดค่าของตารางให้เท่ากับ items -->
+    <!-- เพิ่ม class สำหรับจัดการสไตล์ตาราง -->
+    <p-table
+      #dt1
+      [value]="items"
+      [paginator]="true"
+      [rows] = "10"
+      styleClass="p-datatable-striped p-datatable-gridlines"
+    >
+      <ng-template pTemplate="header">
+        <!-- กำหนด template สำหรับส่วนหัวของตาราง -->
+        <tr>
+          <!-- เริ่มต้นแถวใหม่ -->
+          <!-- คอลัมน์สำหรับหมายเลข -->
+          <th style="width: 5%; text-align: center">No.</th>
+          <!-- คอลัมน์สำหรับเลขที่เอกสาร -->
+          <th style="width: 10%; text-align: center">Doc_no</th>
+          <!-- คอลัมน์สำหรับส่วนงาน -->
+          <th style="width: 5%; text-align: center">Division</th>
+          <!-- คอลัมน์สำหรับโรงงาน -->
+          <th style="width: 5%; text-align: center">Factory</th>
+          <!-- คอลัมน์สำหรับวันที่ -->
+          <th style="width: 10%; text-align: center">Date</th>
+          <!-- คอลัมน์สำหรับกระบวนการ -->
+          <th style="width: 10%; text-align: center">Process</th>
+          <!-- คอลัมน์สำหรับสถานะ -->
+          <th style="width: 10%; text-align: center">Status</th>
+          <!-- คอลัมน์สำหรับรายละเอียด -->
+          <th style="width: 5%; text-align: center">Detail</th>
+        </tr>
+        <!-- ปิดแถว -->
+      </ng-template>
+      <!-- กำหนด template สำหรับเนื้อหาของตาราง -->
+      <!-- กำหนดเป็น body ของตาราง -->
+      <!-- สร้างตัวแปร items สำหรับแต่ละแถว -->
+      <!-- สร้างตัวแปร editing (ไม่ใช้ในที่นี้) -->
+      <!-- สร้างตัวแปร ri สำหรับดัชนีแถว -->
+      <ng-template
+        pTemplate="body"
+        let-items
+        let-editing="editing"
+        let-ri="rowIndex"
+      >
+        <tr>
+          <!-- เริ่มต้นแถวใหม่ -->
+          <td style="text-align: center">{{ ri + 1 }}</td>
+          <!-- แสดงหมายเลขแถว (ดัชนี + 1) -->
+          <td style="text-align: center">{{ items.Doc_no }}</td>
+          <!-- แสดงเลขที่เอกสาร -->
+          <td style="text-align: center">{{ items.Division }}</td>
+          <!-- แสดงส่วนงาน -->
+          <td style="text-align: center">{{ items.Factory }}</td>
+          <!-- แสดงโรงงาน -->
+          <td style="text-align: center">{{ items.Date_of_Req }}</td>
+          <!-- แสดงวันที่ของคำขอ -->
+          <td style="text-align: center">{{ items.Process }}</td>
+          <!-- แสดงกระบวนการ -->
+          <td style="text-align: center">{{ items.Status }}</td>
+          <!-- แสดงสถานะ -->
+          <td style="text-align: center">
+            <!-- เริ่มต้นคอลัมน์สำหรับปุ่มรายละเอียด -->
+            <!-- ปุ่มสำหรับนำทางไปยังรายละเอียด -->
+            <!-- ใช้ pButton จาก PrimeNG -->
+            <!-- ตั้งค่าการจัดแนวภายในปุ่ม -->
+            <!-- ไอคอนในปุ่ม -->
+            <!-- ใช้ class สำหรับจัดการสไตล์ปุ่ม -->
+            <!-- เรียกใช้งานเมธอด Nav_Detail เมื่อคลิก -->
+            <!-- ปิดการใช้งานปุ่มถ้าสถานะคำขอเป็น 'GO!!' -->
+            <button
+              pButton
+              style="text-align: center"
+              icon="pi pi-eye"
+              class="p-button-Disabled"
+              (click)="Nav_Detail(items.Doc_no, items.Local)"
+              [disabled]="items.ReqStatus == 'GO!!'"
+            ></button>
+            <!-- ปิดปุ่ม -->
+          </td>
+          <!-- ปิดคอลัมน์ -->
+        </tr>
+        <!-- ปิดแถว -->
+      </ng-template>
+    </p-table>
+    <!-- ปิด p-table -->
+  </p-card>
+  <!-- ปิด p-card -->
+</div>
+<!-- ปิด div -->

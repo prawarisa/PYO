@@ -1,0 +1,41 @@
+.surface-ground {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
+}
+
+.form-text.text-danger {
+  max-width: 300px;
+  word-wrap: break-word;
+  color: red;
+  font-size: 0.9rem;
+}
+
+form .form-control {
+  max-width: 400px;
+}
+
+button {
+  background-color: #a5a6f6;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+button:hover:not(:disabled) {
+  background-color: #9b9df5;
+}
+
+p.btn-link {
+  font-size: 0.9rem;
+  text-decoration: underline;
+  color: #0044cc;
+}

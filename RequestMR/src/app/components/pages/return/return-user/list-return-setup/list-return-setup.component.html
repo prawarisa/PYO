@@ -1,0 +1,55 @@
+<p-card>
+  <div class="container">
+    <h2>In Progress</h2>
+
+    <div
+      class="card"
+      *ngFor="let item of items"
+      [ngClass]="{ highlighted: item.status === 'Confirm' }"
+    >
+      <div class="status-section">
+        <strong>Status:</strong>
+        <span
+          class="status"
+          [ngClass]="{
+            'waiting-text': item.status === 'Waiting',
+            'confirm-text': item.status === 'Confirm'
+          }"
+        >
+          {{ item.status }}
+        </span>
+      </div>
+      <div class="details-section">
+        <p><strong>Doc no.</strong> {{ item.docNo }}</p>
+        <p><strong>Part no.</strong> {{ item.partNo }}</p>
+      </div>
+      <div class="problem-section">
+        <strong>Problem:</strong>
+        <p>{{ item.problem }}</p>
+      </div>
+      <div class="action-section">
+        <button
+          *ngIf="item.actions.includes('Detail')"
+          class="detail-button"
+          (click)="onDetail(item.docNo)"
+        >
+          Detail
+        </button>
+        <button
+          *ngIf="item.actions.includes('Confirm')"
+          class="confirm-button"
+          (click)="onConfirm(item.docNo)"
+        >
+          Confirm
+        </button>
+        <button
+          *ngIf="item.actions.includes('Return')"
+          class="return-button"
+          (click)="onReturn(item.docNo)"
+        >
+          Return
+        </button>
+      </div>
+    </div>
+  </div>
+</p-card>

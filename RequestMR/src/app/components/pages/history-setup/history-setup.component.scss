@@ -1,0 +1,105 @@
+// จัดการคอนเทนเนอร์หลัก
+// .history-container {
+//   margin: 20px;
+//   font-family: 'Arial', sans-serif;
+//   background-color: #fff;
+//   padding: 20px;
+//   border-radius: 10px;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  // จัดการตาราง
+  .table-container {
+    overflow-x: auto;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+
+      th, td {
+        padding: 12px 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f5f5f5;
+        color: #333;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      td {
+        background-color: #ffffff;
+        color: #555;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #e6f7ff; // สีฟ้าอ่อนเมื่อโฮเวอร์
+      }
+
+      // ปุ่ม Detail
+      .detail-btn {
+        background-color: #6c5ce7;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #4834d4; // สีเข้มขึ้นเมื่อ hover
+        }
+
+        i {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+
+// Pagination
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+
+  button {
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+
+    &:disabled {
+      background-color: #dcdde1;
+      color: #7f8c8d;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: #4834d4;
+    }
+  }
+
+  span {
+    margin: 0 10px;
+    font-weight: bold;
+    color: #333;
+  }
+}

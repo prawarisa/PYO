@@ -1,0 +1,46 @@
+<p-card>
+  <div class="history-container">
+
+    <!-- ตารางข้อมูล -->
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Doc_no</th>
+          <th>Division</th>
+          <th>Factory</th>
+          <th>Date</th>
+          <th>Process</th>
+          <th>Status</th>
+          <th>Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of historyData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.docNo }}</td>
+          <td>{{ item.division }}</td>
+          <td>{{ item.factory }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.process }}</td>
+          <td>{{ item.status }}</td>
+          <td>
+            <button
+              class="btn btn-detail"
+              (click)="viewDetail(item.docNo)"
+            >
+              <i class="pi pi-eye"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button class="page-btn">&lt;&lt;</button>
+      <span class="page-number">1</span>
+      <button class="page-btn">&gt;&gt;</button>
+    </div>
+  </div>
+</p-card>

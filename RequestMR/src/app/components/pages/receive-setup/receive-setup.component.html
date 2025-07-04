@@ -1,0 +1,49 @@
+<p-card>
+  <div class="receive-container">
+    <!-- Header -->
+    <h2>Receive</h2>
+
+    <!-- Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Doc_no</th>
+            <th>Division</th>
+            <th>Factory</th>
+            <th>Date</th>
+            <th>Process</th>
+            <th>Status</th>
+            <th>Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- แสดงข้อมูลในตาราง -->
+          <tr *ngFor="let item of receiveList; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.docNo }}</td>
+            <td>{{ item.division }}</td>
+            <td>{{ item.factory }}</td>
+            <td>{{ item.date }}</td>
+            <td>{{ item.process }}</td>
+            <td>{{ item.status }}</td>
+            <td>
+              <!-- ปุ่มดูรายละเอียด -->
+              <button class="detail-btn" (click)="goToDetail(item.docNo)">
+                <i class="pi pi-eye"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <button (click)="prevPage()" [disabled]="currentPage === 1">&lt;&lt;</button>
+        <span>{{ currentPage }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage >= totalPages">&gt;&gt;</button>
+      </div>
+    </div>
+  </div>
+</p-card>

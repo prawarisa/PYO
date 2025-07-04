@@ -1,0 +1,41 @@
+<div class="layout-topbar">
+  <a class="layout-topbar-logo">
+    <img src="assets/layout/images/6428956.png" alt="logo">
+    <span>Indirect Expense</span>
+  </a>
+  <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+    <i class="pi pi-bars"></i>
+  </button>
+  <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button"
+    (click)="layoutService.showProfileSidebar()">
+    <i class="pi pi-ellipsis-v"></i>
+  </button>
+  <div #topbarmenu class="layout-topbar-menu"
+    [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+
+
+
+    <!-- Icon 2 -->
+    <button class="icon-spacing p-link layout-topbar-button" pRipple pTooltip="{{ 'SIGN IN' | translate }}" tooltipPosition="bottom"
+      [routerLink]="'/auth/login'" *ngIf="!currentUser.Emp_Code">
+      <i class="pi pi-user" style="color: black; font-size: 2rem;"></i>
+      <span>{{ 'SIGN IN' | translate }}</span>
+    </button>
+
+    <!-- Icon 3 -->
+    <button class="icon-spacing p-link layout-topbar-button" pRipple pTooltip="{{ 'SIGN OUT' | translate }}" tooltipPosition="bottom"
+      *ngIf="currentUser.Emp_Code" (click)="logout()">
+      <i class="pi pi-sign-out" style="color: black; font-size: 2rem;"></i>
+      <span>{{ 'SIGN OUT' | translate }}</span>
+    </button>
+
+    <!-- Icon 4 -->
+    <a class="ChangeLanguage" (click)="switchLanguage(currentLanguage === 'th' ? 'en' : 'th')" style="cursor: pointer;">
+      <i class="pi pi-globe" style="font-size: 1.5rem;"></i>
+    </a>
+
+
+
+
+  </div>
+</div>

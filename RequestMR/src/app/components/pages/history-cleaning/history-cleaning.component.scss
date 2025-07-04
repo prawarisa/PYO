@@ -1,0 +1,73 @@
+.history-container {
+  font-family: Arial, sans-serif;
+  padding: 1.5rem;
+
+  h3 {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      text-align: center;
+      padding: 0.8rem;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      color: #555;
+      font-weight: bold;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .btn-detail {
+      background-color: #5a67d8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem;
+      cursor: pointer;
+
+      // &:hover {
+      //   background-color: #5a67d8;
+      // }
+    }
+
+    i {
+      font-size: 1rem;
+    }
+  }
+
+  .pagination {
+    margin-top: 1rem;
+    text-align: center;
+
+    .page-btn {
+      background-color: #5a67d8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+
+      // &:hover {
+      //   background-color: #5a67d8;
+      // }
+    }
+
+    .page-number {
+      margin: 0 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+}

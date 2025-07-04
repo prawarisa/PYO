@@ -1,0 +1,91 @@
+<div>
+  <form>
+    <h3>Update Master</h3>
+
+    <!-- Dropdown สำหรับ No. -->
+    <div class="form-group">
+      <label for="itemNo">Process no.:</label>
+      <p-dropdown
+        [options]="noOptions"
+        [(ngModel)]="selectedNo"
+        name="no"
+        (onChange)="onNoSelect($event)"
+        placeholder="Select No."
+        optionLabel="label"
+        [filter]="true"
+      ></p-dropdown>
+    </div>
+
+    <div class="form-group">
+      <label for="itemNo">Item No:</label>
+      <p-dropdown
+        [options]="filteredItemNoOptions"
+        [(ngModel)]="selectedItem"
+        name="itemNo"
+        (onChange)="onItemSelect($event)"
+        placeholder="Search or Select Item"
+        optionLabel="label"
+        [filter]="true"
+      ></p-dropdown>
+    </div>
+
+
+    <!-- ฟิลด์ข้อมูล -->
+    <div>
+      <label for="partNo">Part No:</label>
+      <input type="text" [(ngModel)]="formData.partNo" name="partNo" />
+    </div>
+
+    <div>
+      <label for="process">Process:</label>
+      <input type="text" [(ngModel)]="formData.process" name="process" />
+    </div>
+
+    <div>
+      <label for="mcName">Mc Name:</label>
+      <input type="text" [(ngModel)]="formData.mcName" name="mcName" />
+    </div>
+
+    <div>
+      <label for="mcType">Mc Type:</label>
+      <input type="text" [(ngModel)]="formData.mcType" name="mcType" />
+    </div>
+
+    <div>
+      <label for="spec">Spec:</label>
+      <input type="text" [(ngModel)]="formData.spec" name="spec" />
+    </div>
+
+    <div>
+      <label for="usage">Usage:</label>
+      <input type="text" [(ngModel)]="formData.usage" name="usage" />
+    </div>
+
+    <!-- แสดงรูปภาพปัจจุบัน -->
+    <div class="form-group">
+      <label>Current Image:</label>
+      <img [src]="currentImageUrl" alt="Current Image" width="150" />
+    </div>
+
+    <!-- อัปโหลดรูปใหม่ -->
+    <div class="form-group">
+      <label for="newImage">Upload New Image:</label>
+      <input type="file" id="newImage" (change)="onFileSelected($event)" />
+    </div>
+
+    <div>
+      <label for="remark">Remark:</label>
+      <textarea [(ngModel)]="formData.remark" name="remark"></textarea>
+    </div>
+
+    <!-- button -->
+    <div class="button-container">
+      <button type="button" class="btn-save" (click)="onSubmit()">
+        <i class="pi pi-save"></i> Update
+      </button>
+      <button type="button" class="btn-back" (click)="onBack()">
+        <i class="pi pi-arrow-left"></i> Back
+      </button>
+    </div>
+  </form>
+</div>

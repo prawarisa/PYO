@@ -1,0 +1,46 @@
+.summary-container {
+  padding: 20px;
+
+  .form-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      padding: 5px;
+      width: 150px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .export-btn {
+      background-color: #ffb703;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+/* กำหนดให้ body และ html ไม่มี scroll */
+html, body {
+  height: 100%; /* กำหนดให้ความสูงเต็มหน้าจอ */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ปิดการเลื่อนของหน้าจอ */
+}
+
+/* จัดตำแหน่งกลาง */
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* ใช้ความสูง 100% ของ viewport */
+  text-align: center;
+  background-color: #f8f9fa; /* พื้นหลังอ่อน */
+  margin: 0;
+  padding: 0;
+}
+
+.icon-container {
+  font-size: 60px;
+  color: #6c757d; /* สีของไอคอน */
+  margin-bottom: 20px;
+}
+
+.btn-choose, .btn-upload, .btn-back {
+  border: none;
+  border-radius: 30px; /* ปรับให้มุมโค้ง */
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+}
+
+.btn-choose {
+  background-color: #e91e63; /* สีชมพู */
+  color: white;
+}
+
+.btn-choose:hover {
+  background-color: #d81b60;
+  transform: translateY(-2px);
+}
+
+.btn-upload {
+  background-color: #4caf50; /* สีเขียว */
+  color: white;
+}
+
+.btn-upload:hover {
+  background-color: #43a047;
+  transform: translateY(-2px);
+}
+
+.btn-back {
+  background-color: #ffc107; /* สีเหลือง */
+  color: white;
+}
+
+.btn-back:hover {
+  background-color: #e0a800;
+  transform: translateY(-2px);
+}

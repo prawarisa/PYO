@@ -1,0 +1,57 @@
+<p-toast></p-toast> <!-- แสดง Toast messages จาก PrimeNG -->
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen" *ngIf="!visible">
+  <div class="flex flex-column align-items-center justify-content-center">
+    <img src="assets/layout/images/{{layoutService.config.colorScheme === 'light' ? '6428956' : '6428956'}}.png"
+      alt="Sakai logo" class="mb-5 w-6rem flex-shrink-0">
+    <div
+      style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+      <div class="w-full surface-card gap-3 py-3 px-5 sm:px-8" style="border-radius:53px">
+
+        <!-- head -->
+        <div class="text-center mb-5">
+          <img src="assets/layout/images/Logo_minebeamitsumi.png" alt="Image" height="30" class="mb-1">
+          <div class="text-900 text-3xl font-medium mb-3">Welcome!</div>
+          <span class="text-600 font-medium">SIGN IN TO CONTINUE</span>
+        </div>
+
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div> <!-- แสดงข้อความแสดงข้อผิดพลาด -->
+        <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+          <div>
+            <label for="Emp" class="block text-900 text-xl font-medium mb-1">Employee No.</label>
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">
+                <i class="pi pi-user"></i>
+              </span>
+              <input id="Emp" [(ngModel)]="Emp" type="text" placeholder="Emp No." pInputText
+                style="text-transform:uppercase;padding:1rem" formControlName="Emp_Code">
+            </div>
+
+            <label for="Emp" class="block text-900 text-xl font-medium mb-1">Password.</label>
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">
+                <i class="pi pi-lock"></i>
+              </span>
+              <input [(ngModel)]="password" type="password" placeholder="Password" pInputText style="padding:1rem"
+                formControlName="Emp_Pwd">
+            </div>
+
+            <div class="flex align-items-center mt-2 mb-0" style="color:red">
+              <!-- <span>!Member only first use format 'pP1000' </span> -->
+              <br>
+            </div>
+
+            <button pButton pRipple label="Sign In" icon="pi pi-user" class="w-full p-3 text-xl mt-3"
+              [disabled]="!loginform.valid"> <!-- ปุ่ม Sign In -->
+              <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span> <!-- สปินเนอร์แสดงระหว่างโหลด -->
+            </button>
+
+            <div class="flex align-items-center mt-2 mb-0 gap-5">
+              <p>Not a member?<a routerLink="../register" class="btn btn-link">Register</a></p> <!-- ลิงก์ไปยังหน้าสมัครสมาชิก -->
+              <a routerLink="../forgotpass" class="btn btn-link text-right mb-0 " style="margin-top: -1rem;">Forgot password?</a> <!-- ลิงก์ไปยังหน้าลืมรหัสผ่าน -->
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

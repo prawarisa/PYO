@@ -1,0 +1,56 @@
+.main-content {
+  padding: 2rem;
+  text-align: center;
+
+  .page-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+
+  .buttons-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // สร้าง 3 คอลัมน์ต่อแถว
+    gap: 1.5rem; // ระยะห่างระหว่างปุ่ม
+    justify-items: center;
+
+    .custom-button {
+      width: 80%; // ปรับความกว้างของปุ่มให้เหมาะสม
+      height: 50px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      border-radius: 8px;
+
+      &.cutting-tool {
+        background-color: #2196f3;
+      }
+
+      &.cutting-oil {
+        background-color: #4caf50;
+      }
+
+      &.grinding {
+        background-color: #ff9800;
+      }
+
+      &.setup-tool {
+        background-color: #9c27b0;
+      }
+
+      &.cleaning {
+        background-color: #f26ac7;
+      }
+
+      &.other {
+        background-color: #f44336;
+      }
+
+      &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+      }
+    }
+  }
+}

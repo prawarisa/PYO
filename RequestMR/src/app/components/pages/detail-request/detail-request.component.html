@@ -1,0 +1,297 @@
+<div *ngIf="items.length > 0">
+  <!-- ตรวจสอบว่ามี items อย่างน้อยหนึ่งรายการก่อนที่จะแสดงเนื้อหา -->
+  <p-card>
+    <!-- ใช้ p-card เพื่อสร้างกรอบการ์ด -->
+    <div class="flex align-items-center gap-2">
+      <!-- ใช้ flexbox เพื่อจัดเรียง input fields และ label -->
+      <!-- Input fields -->
+      <!-- ป้ายชื่อสำหรับฟิลด์ Doc_no -->
+      <!-- ฟิลด์ป้อนข้อมูลสำหรับ Doc_no -->
+      <!-- ใช้ pInputText จาก PrimeNG -->
+      <!-- ประเภทฟิลด์คือข้อความ -->
+      <!-- ตั้งค่า id สำหรับฟิลด์ -->
+      <!-- สร้าง Two-way binding กับ Doc_no ของ item แรกใน items -->
+      <!-- กำหนดคลาสสำหรับ input -->
+      <!-- เปลี่ยนข้อความเป็นตัวพิมพ์ใหญ่และกำหนดฟอนต์ -->
+      <!-- ทำให้ ngModel ทำงานอิสระไม่ขึ้นกับฟอร์ม -->
+      <label for="doc_no">Doc_no: </label>
+      <input
+        pInputText
+        type="text"
+        id="doc_no"
+        [(ngModel)]="items[0].Doc_no"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <!-- ป้ายชื่อสำหรับฟิลด์ Division -->
+      <!-- ฟิลด์ป้อนข้อมูลสำหรับ Division -->
+      <!-- ใช้ pInputText จาก PrimeNG -->
+      <!-- ประเภทฟิลด์คือข้อความ -->
+      <!-- ตั้งค่า id สำหรับฟิลด์ -->
+      <!-- สร้าง Two-way binding กับ Division ของ item แรกใน items -->
+      <!-- กำหนดคลาสสำหรับ input -->
+      <!-- เปลี่ยนข้อความเป็นตัวพิมพ์ใหญ่และกำหนดฟอนต์ -->
+      <!-- ทำให้ ngModel ทำงานอิสระไม่ขึ้นกับฟอร์ม -->
+      <label for="division">Division: </label>
+      <input
+        pInputText
+        type="text"
+        id="division"
+        [(ngModel)]="items[0].Division"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial; width: 50px;"
+        [ngModelOptions]="{ standalone: true }"
+      />
+
+      <label for="factory">Factory: </label>
+      <!-- ป้ายชื่อสำหรับฟิลด์ Factory -->
+      <!-- ฟิลด์ป้อนข้อมูลสำหรับ Factory -->
+      <!-- ใช้ pInputText จาก PrimeNG -->
+      <!-- ประเภทฟิลด์คือข้อความ -->
+      <!-- ตั้งค่า id สำหรับฟิลด์ -->
+      <!-- สร้าง Two-way binding กับ Factory ของ item แรกใน items -->
+      <!-- กำหนดคลาสสำหรับ input -->
+      <!-- เปลี่ยนข้อความเป็นตัวพิมพ์ใหญ่และกำหนดฟอนต์ -->
+      <!-- ทำให้ ngModel ทำงานอิสระไม่ขึ้นกับฟอร์ม -->
+
+      <!--   [(ngModel)]="items[0].Factory" fac อยู้ในdoc มันจะมีแค่facเดียวมที่เราเลือกไว้ เลยเอาarray ตัวแรกมาแสดง-->
+      <input
+        pInputText
+        type="text"
+        id="factory"
+        [(ngModel)]="items[0].Factory"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial; width: 30px;"
+        [ngModelOptions]="{ standalone: true }"
+      />
+
+      <label for="process">Process: </label>
+      <!-- ป้ายชื่อสำหรับฟิลด์ Process -->
+      <!-- ฟิลด์ป้อนข้อมูลสำหรับ Process -->
+      <!-- ใช้ pInputText จาก PrimeNG -->
+      <!-- ประเภทฟิลด์คือข้อความ -->
+      <!-- ตั้งค่า id สำหรับฟิลด์ -->
+      <!-- สร้าง Two-way binding กับ Process ของ item แรกใน items -->
+      <!-- กำหนดคลาสสำหรับ input -->
+      <!-- เปลี่ยนข้อความเป็นตัวพิมพ์ใหญ่และกำหนดฟอนต์ -->
+      <!-- ทำให้ ngModel ทำงานอิสระไม่ขึ้นกับฟอร์ม -->
+      <input
+        pInputText
+        type="text"
+        id="process"
+        [(ngModel)]="items[0].Process"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial"
+        [ngModelOptions]="{ standalone: true }"
+      />
+
+      <label for="date_of_req">Date of Req: </label>
+      <!-- ป้ายชื่อสำหรับฟิลด์ Date of Req -->
+
+      <!-- ฟิลด์ป้อนข้อมูลสำหรับ Date of Req -->
+      <!-- ใช้ pInputText จาก PrimeNG -->
+      <!-- ประเภทฟิลด์คือข้อความ -->
+      <!-- สร้าง Two-way binding กับ formattedDate -->
+      <!-- กำหนดคลาสสำหรับ input -->
+      <!-- เปลี่ยนข้อความเป็นตัวพิมพ์ใหญ่และกำหนดฟอนต์ -->
+      <!-- ทำให้ ngModel ทำงานอิสระไม่ขึ้นกับฟอร์ม -->
+      <input
+        pInputText
+        type="text"
+        [(ngModel)]="formattedDate"
+        class="p-inputtext"
+        style="text-transform: uppercase; font-family: Arial"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </div>
+    <!-- สิ้นสุดการจัดเรียง input fields -->
+
+    <br />
+    <!-- เพิ่มช่องว่าง -->
+    <!-- ใช้ p-table เพื่อแสดงรายการในรูปแบบตาราง -->
+    <!-- สร้าง template reference variable สำหรับ p-table -->
+    <!-- กำหนดข้อมูลที่จะแสดงในตารางจาก items -->
+    <!-- กำหนดคลาส CSS สำหรับสไตล์ตาราง -->
+    <p-table
+      #dt1
+      [value]="items"
+      styleClass="p-datatable-striped p-datatable-gridlines"
+    >
+      <ng-template pTemplate="header">
+        <!-- ใช้ ng-template เพื่อกำหนดส่วนหัวของตาราง -->
+        <tr>
+          <!-- เริ่มต้นแถวในส่วนหัว -->
+          <th style="width: 5%; text-align: center">{{ 'NO' | translate }}</th>
+          <!-- คอลัมน์สำหรับหมายเลข -->
+          <th style="width: 10%; text-align: center">Item no.</th>
+          <!-- คอลัมน์สำหรับหมายเลขรายการ -->
+          <th style="width: 10%; text-align: center">Part no.</th>
+          <!-- คอลัมน์สำหรับหมายเลขชิ้นส่วน -->
+          <th style="width: 5%; text-align: center">MC type</th>
+          <!-- คอลัมน์สำหรับประเภท MC -->
+          <th style="width: 10%; text-align: center">Spec</th>
+          <!-- คอลัมน์สำหรับสเปค -->
+          <th style="width: 5%; text-align: center">Usage</th>
+          <!-- คอลัมน์สำหรับการใช้งาน -->
+          <th style="width: 5%; text-align: center">MC no.</th>
+          <!-- คอลัมน์สำหรับหมายเลข MC -->
+          <th style="width: 5%; text-align: center">Qty</th>
+          <!-- คอลัมน์สำหรับปริมาณ -->
+          <th style="width: 5%; text-align: center">Case</th>
+          <!-- คอลัมน์สำหรับกรณี -->
+          <th style="width: 5%; text-align: center">Result1</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 1 -->
+          <th style="width: 5%; text-align: center">Result2</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 2 -->
+          <th style="width: 5%; text-align: center">Result3</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 3 -->
+          <th style="width: 5%; text-align: center">Result4</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 4 -->
+          <th style="width: 5%; text-align: center">Result5</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 5 -->
+          <th style="width: 5%; text-align: center">Result6</th>
+          <!-- คอลัมน์สำหรับผลลัพธ์ที่ 6 -->
+          <th style="width: 5%; text-align: center">Rev</th>
+          <th style="width: 5%; text-align: center">{{ 'STATUS' | translate }}</th>
+          <th style="width: 5%; text-align: center" *ngIf="currentUser?.role === 'admin'">Sent by</th>
+          <!-- คอลัมน์สำหรับสถานะ -->
+         <th style="width: 10%; text-align: center" *ngIf="isUser">{{ 'SENT BY' | translate }}</th>
+          <!-- คอลัมน์สำหรับผู้ตั้งค่า -->
+          <th
+            style="width: 5%; text-align: center"
+            *ngIf="Local == 1 || Local == 2"
+          >
+            <!-- คอลัมน์สำหรับข้อความขึ้นอยู่กับค่า Local -->
+            <span  *ngIf="currentUser.role === 'admin'">{{ 'ACCEPT' | translate }}</span>
+            <!-- แสดง "Accept" ถ้า Local เท่ากับ 1 -->
+            <span *ngIf="Local === 2 && isUser ">Receive</span>
+            <!-- แสดง "Receive" ถ้า Local เท่ากับ 2 -->
+          </th>
+
+          <!-- อันนี้ต้องมาเพิ่มlocal เพื่อแบ่งstatus  อาจจะ local = 4 -->
+          <th style="width: 10%; text-align: center" *ngIf="isUser">Return</th>
+        </tr>
+        <!-- สิ้นสุดแถวในส่วนหัว -->
+      </ng-template>
+
+      <ng-template
+        pTemplate="body"
+        let-items
+        let-editing="editing"
+        let-ri="rowIndex"
+      >
+        <tr>
+          <td style="text-align: center">{{ ri + 1 }}</td>
+          <!-- แสดงหมายเลขของแถว -->
+          <td style="text-align: center">{{ items.Item_no }}</td>
+          <!-- แสดงหมายเลขรายการ -->
+          <td style="text-align: center">{{ items.Part_no }}</td>
+          <!-- แสดงหมายเลขชิ้นส่วน -->
+          <td style="text-align: center">{{ items.MC_type }}</td>
+          <!-- แสดงประเภท MC -->
+          <td style="text-align: center">{{ items.Spec }}</td>
+          <!-- แสดงสเปค -->
+          <td style="text-align: center">{{ items.Usage }}</td>
+          <!-- แสดงการใช้งาน -->
+          <td style="text-align: center">{{ items.MC_no }}</td>
+          <!-- แสดงหมายเลข MC -->
+          <td style="text-align: center">{{ items.Qty }}</td>
+          <!-- แสดงปริมาณ -->
+          <td style="text-align: center">{{ items.Case_ }}</td>
+          <!-- แสดงกรณี -->
+          <td style="text-align: center">{{ items.Result1 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 1 -->
+          <td style="text-align: center">{{ items.Result2 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 2 -->
+          <td style="text-align: center">{{ items.Result3 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 3 -->
+          <td style="text-align: center">{{ items.Result4 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 4 -->
+          <td style="text-align: center">{{ items.Result5 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 5 -->
+          <td style="text-align: center">{{ items.Result6 }}</td>
+          <!-- แสดงผลลัพธ์ที่ 6 -->
+
+          <td style="width: 5%; text-align: center">Rev</td>
+          <!-- ยังไม่ได้ดึง -->
+
+          <td style="text-align: center">{{ items.Status }}</td>
+          <!-- แสดงสถานะ -->
+
+          <!-- ฟิลด์ป้อนข้อมูลสำหรับ Set_by -->
+          <!-- แสดงฟิลด์นี้เมื่อ Local เท่ากับ 1 -->
+          <!-- ประเภทฟิลด์คือข้อความ -->
+          <!-- กำหนดการจัดแนวและความกว้างของฟิลด์ -->
+          <!-- สร้าง Two-way binding กับ Set_by ของ items -->
+          <!-- กำหนดคลาสสำหรับฟิลด์ input -->
+          <td>
+            <input
+              *ngIf="Local === 1 && isAdmin"
+              type="text"
+              style="text-align: center; width: 75px"
+              [(ngModel)]="items.Set_by"
+              class="input-element"
+            />
+            <!-- แสดงข้อความใน span ถ้า Local เท่ากับ 2 หรือ 3 -->
+            <!-- แสดง span นี้เมื่อ Local เท่ากับ 2 หรือ 3 -->
+            <!-- จัดแนวข้อความใน span -->
+            <!-- แสดงค่าของ Set_by จาก items -->
+
+            <span *ngIf="Local === 2 || Local === 3 && isAdmin" style="text-align: center">
+              {{ items.Set_by }}
+            </span>
+          </td>
+
+          <!-- ปุ่ม Accept สำหรับ Local เท่ากับ 1 -->
+          <!-- ปุ่มที่แสดงเมื่อ Local เท่ากับ 1 -->
+          <!-- แสดงปุ่มนี้เมื่อ Local เท่ากับ 1 -->
+          <!-- ใช้ pButton จาก PrimeNG -->
+          <!-- ใช้ไอคอนจาก PrimeNG -->
+          <!-- กำหนดคลาสสำหรับปุ่ม -->
+          <!-- เรียกใช้ฟังก์ชัน Accept เมื่อคลิกปุ่ม -->
+          <!-- ปิดการใช้งานปุ่มถ้า ReqStatus เท่ากับ 'SetComplete' -->
+
+          <td *ngIf="Local == 1 || Local == 2">
+            <button
+              *ngIf="isAdmin"
+              pButton
+              icon="pi pi-check-circle"
+              class="p-button-success"
+              (click)="Accept(items)"
+              [disabled]="items.ReqStatus == 'SetComplete'"
+            ></button>
+
+            <!-- ปุ่ม Accept สำหรับ Local เท่ากับ 2 -->
+            <!-- ปุ่มที่แสดงเมื่อ Local เท่ากับ 2 -->
+            <!-- แสดงปุ่มนี้เมื่อ Local เท่ากับ 2 -->
+            <!-- ใช้ pButton จาก PrimeNG -->
+            <!-- ใช้ไอคอนจาก PrimeNG -->
+            <!-- กำหนดคลาสสำหรับปุ่ม -->
+            <!-- เรียกใช้ฟังก์ชัน Receive เมื่อคลิกปุ่ม -->
+            <!-- ปิดการใช้งานปุ่มถ้า ReqStatus เท่ากับ 'SetComplete' -->
+
+            <button
+              *ngIf="Local === 2 && isUser"
+              pButton
+
+              icon="pi pi-gift"
+              class="p-button-success"
+              (click)="Receive(items)"
+              [disabled]="items.ReqStatus == 'SetComplete'"
+            ></button>
+          </td>
+          <td style="text-align: center" *ngIf="isUser">
+            <button
+              pButton
+              icon="pi pi-refresh"
+              class="p-button-success"
+              (click)="onReturn(items.Doc_no, items.Local)"
+            ></button>
+
+          </td></tr
+      ></ng-template>
+    </p-table>
+
+  </p-card>
+</div>

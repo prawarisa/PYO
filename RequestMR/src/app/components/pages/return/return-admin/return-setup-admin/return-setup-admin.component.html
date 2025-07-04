@@ -1,0 +1,30 @@
+<div class="pending-container">
+  <h2>Pending</h2>
+
+  <!-- Loop through pendingCards -->
+  <div class="pending-card" *ngFor="let card of pendingCards">
+    <div class="status">
+      <strong>Status:</strong>
+      <span class="status-waiting">{{ card.status }}</span>
+    </div>
+    <div class="info">
+      <p><strong>Doc no.:</strong> {{ card.docNo }}</p>
+      <p><strong>Part no.:</strong> {{ card.partNo }}</p>
+      <p><strong>Return Date:</strong> {{ card.returnDate | date: 'dd/MM/yyyy' }}</p>
+    </div>
+    <div class="problem">
+      <p><strong>Problem:</strong></p>
+      <p *ngFor="let issue of card.problem">{{ issue }}</p>
+    </div>
+    <div class="buttons">
+      <button class="btn-detail" (click)="goToDetail(card.docNo)">Detail</button>
+      <button class="btn-confirm" (click)="confirmPending(card.docNo)">Confirm</button>
+    </div>
+  </div>
+
+  <!-- Back Button -->
+  <div class="back-button">
+    <button class="btn-back" (click)="goBack()">Back</button>
+  </div>
+</div>
+
